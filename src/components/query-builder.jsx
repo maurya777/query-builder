@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Query, Builder, Utils as QbUtils } from 'react-awesome-query-builder'
 
 import 'antd/dist/antd.css'
@@ -12,6 +12,13 @@ import { convertNodeLeafToTree, convertTreeToNodeLeaf } from './utils'
 
 const QueryBuilder = ({ query: nodeLeafQuery, onChange }) => {
   const tree = convertNodeLeafToTree({ nodeLeafQuery })
+
+  // hide <button>'s containing "Not"
+  useEffect(() => {
+    document.querySelectorAll('.group--header button').forEach(btn => {
+      if (btn.innerHTML === '<span>Not</span>') btn.style.display = 'none'
+    })
+  }, [])
 
   return (
     <Query
@@ -33,11 +40,13 @@ const QueryBuilder = ({ query: nodeLeafQuery, onChange }) => {
 
 export default QueryBuilder
 
+// other QbUtils methods...
 // queryString
 // mongodbFormat
 // sqlFormat
 // jsonLogicFormat
 
+// from demo
 // qty: {
 //   label: 'Qty',
 //   type: 'number',

@@ -3,22 +3,6 @@ import React from 'react'
 import QueryBuilder from './components/query-builder'
 
 const App = () => {
-  const initialQuery = {
-    Operator: 'and',
-    Operands: [
-      {
-        Operator: 'like',
-        Attribute: 'ReportDevice.ComputerName',
-        Value: '%1E%'
-      },
-      {
-        Operator: '==',
-        Attribute: 'ReportDevice.DomainName',
-        Value: '1E.local'
-      }
-    ]
-  }
-
   // NB Our component returns query (i.e. nodeLeafQuery), BUT also treeQuery for development
   const onChange = ({ query, treeQuery }) => {
     document.getElementById('tree-query').innerHTML = JSON.stringify(
@@ -35,15 +19,8 @@ const App = () => {
 
   return (
     <div className="app">
-      <QueryBuilder query={initialQuery} onChange={onChange} />
+      <QueryBuilder query={{}} onChange={onChange} />
 
-      <div className="panel">
-        <h3 className="title">Initial Node / Leaf Query</h3>
-        <span style={{ visibility: 'hidden' }}>
-          <i>---</i>
-        </span>
-        <xmp>{JSON.stringify(initialQuery, null, 2)}</xmp>
-      </div>
       <div className="panel">
         <h3 className="title">Tree Query</h3>
         <span style={{ visibility: 'hidden' }}>
@@ -57,7 +34,7 @@ const App = () => {
         <span>
           <i>i.e. processed tree leaf query</i>
         </span>
-        <xmp id="node-leaf-query">{JSON.stringify(initialQuery, null, 2)}</xmp>
+        <xmp id="node-leaf-query">{JSON.stringify({}, null, 2)}</xmp>
       </div>
     </div>
   )
