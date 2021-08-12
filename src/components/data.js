@@ -1,7 +1,7 @@
 import { Utils as QbUtils } from 'react-awesome-query-builder'
 import { v4 as uuidv4 } from 'uuid'
 
-export default {
+const data = {
   one: {
     nodeLeaf: {
       Operator: 'and',
@@ -129,3 +129,5 @@ export default {
     tree: {}
   }
 }
+
+export default data
