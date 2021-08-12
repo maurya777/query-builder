@@ -94,26 +94,29 @@ export const convertTreeToNodeLeaf = ({ treeQuery }) => {
     .map(val => val[1])
     .map(({ type, properties, children1 }) => {
       return type === 'rule'
-        ? properties
-        : // type === group
-          Object.entries(children1)
+        ? { _type: 'rule', ...properties }
+        : {
+            _type: 'group',
+            conjunction: properties.conjunction.toLowerCase(),
+            children: Object.entries(children1)
+          }
     })
 
   if (level === 1) {
     return { Operator: 'and', Operands: data.map(_processRuleFields) }
   } else if (level === 2) {
     const _data = data.map(item => {
-      return Array.isArray(item)
-        ? {
-            Operator: 'todo',
-            Operands: item
+      return item._type === 'rule'
+        ? _processRuleFields({ ...item })
+        : {
+            Operator: item.conjunction,
+            Operands: item.children
               .map(val => val[1])
               .map(({ properties }) => properties)
               .map(_processRuleFields)
           }
-        : _processRuleFields({ ...item })
     })
-    return { Operator: 'todo', Operands: _data }
+    return { Operator: 'and', Operands: _data }
   } else {
     return treeQuery // JSON.stringify(treeQuery)
   }
