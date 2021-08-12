@@ -160,12 +160,7 @@ const data = {
                   Operator: '==',
                   Attribute: 'ReportDevice.DeviceId',
                   Value: 'dev-id'
-                }
-              ]
-            },
-            {
-              Operator: 'and',
-              Operands: [
+                },
                 {
                   Operator: '==',
                   Attribute: 'ReportDevice.DeviceName',
@@ -252,11 +247,237 @@ const data = {
   },
   four: {
     nodeLeaf: {},
-    tree: {}
+    tree: {
+      id: QbUtils.uuid(),
+      type: 'group',
+      children1: {
+        [uuidv4()]: {
+          type: 'rule',
+          properties: {
+            field: 'ReportDevice.ComputerId',
+            operator: 'equal',
+            value: ['comp-id-123'],
+            valueSrc: ['value'],
+            valueType: ['text']
+          }
+        },
+        [uuidv4()]: {
+          type: 'group',
+          properties: {
+            conjunction: 'AND'
+          },
+          children1: {
+            [uuidv4()]: {
+              type: 'rule',
+              properties: {
+                field: 'ReportDevice.DomainName',
+                operator: 'equal',
+                value: ['dom-name'],
+                valueSrc: ['value'],
+                valueType: ['text']
+              }
+            },
+            [uuidv4()]: {
+              type: 'rule',
+              properties: {
+                field: 'ReportDevice.ComputerName',
+                operator: 'like',
+                value: ['comp-name'],
+                valueSrc: ['value'],
+                valueType: ['text']
+              }
+            },
+            [uuidv4()]: {
+              type: 'group',
+              properties: {
+                conjunction: 'AND'
+              },
+              children1: {
+                [uuidv4()]: {
+                  type: 'rule',
+                  properties: {
+                    field: 'ReportDevice.DeviceId',
+                    operator: 'equal',
+                    value: ['dev-id'],
+                    valueSrc: ['value'],
+                    valueType: ['text']
+                  }
+                },
+                [uuidv4()]: {
+                  type: 'rule',
+                  properties: {
+                    field: 'ReportDevice.DeviceName',
+                    operator: 'equal',
+                    value: ['dev-name'],
+                    valueSrc: ['value'],
+                    valueType: ['text']
+                  }
+                },
+                [uuidv4()]: {
+                  type: 'group',
+                  properties: {
+                    conjunction: 'AND'
+                  },
+                  children1: {
+                    [uuidv4()]: {
+                      type: 'rule',
+                      properties: {
+                        field: 'ReportDevice.DeviceId',
+                        operator: 'equal',
+                        value: ['dev-id'],
+                        valueSrc: ['value'],
+                        valueType: ['text']
+                      }
+                    },
+                    [uuidv4()]: {
+                      type: 'rule',
+                      properties: {
+                        field: 'ReportDevice.DeviceName',
+                        operator: 'equal',
+                        value: ['dev-name'],
+                        valueSrc: ['value'],
+                        valueType: ['text']
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   },
   five: {
     nodeLeaf: {},
-    tree: {}
+    tree: {
+      id: QbUtils.uuid(),
+      type: 'group',
+      children1: {
+        [uuidv4()]: {
+          type: 'rule',
+          properties: {
+            field: 'ReportDevice.ComputerId',
+            operator: 'equal',
+            value: ['comp-id-123'],
+            valueSrc: ['value'],
+            valueType: ['text']
+          }
+        },
+        [uuidv4()]: {
+          type: 'group',
+          properties: {
+            conjunction: 'AND'
+          },
+          children1: {
+            [uuidv4()]: {
+              type: 'rule',
+              properties: {
+                field: 'ReportDevice.DomainName',
+                operator: 'equal',
+                value: ['dom-name'],
+                valueSrc: ['value'],
+                valueType: ['text']
+              }
+            },
+            [uuidv4()]: {
+              type: 'rule',
+              properties: {
+                field: 'ReportDevice.ComputerName',
+                operator: 'like',
+                value: ['comp-name'],
+                valueSrc: ['value'],
+                valueType: ['text']
+              }
+            },
+            [uuidv4()]: {
+              type: 'group',
+              properties: {
+                conjunction: 'AND'
+              },
+              children1: {
+                [uuidv4()]: {
+                  type: 'rule',
+                  properties: {
+                    field: 'ReportDevice.DeviceId',
+                    operator: 'equal',
+                    value: ['dev-id'],
+                    valueSrc: ['value'],
+                    valueType: ['text']
+                  }
+                },
+                [uuidv4()]: {
+                  type: 'rule',
+                  properties: {
+                    field: 'ReportDevice.DeviceName',
+                    operator: 'equal',
+                    value: ['dev-name'],
+                    valueSrc: ['value'],
+                    valueType: ['text']
+                  }
+                },
+                [uuidv4()]: {
+                  type: 'group',
+                  properties: {
+                    conjunction: 'AND'
+                  },
+                  children1: {
+                    [uuidv4()]: {
+                      type: 'rule',
+                      properties: {
+                        field: 'ReportDevice.DeviceId',
+                        operator: 'equal',
+                        value: ['dev-id'],
+                        valueSrc: ['value'],
+                        valueType: ['text']
+                      }
+                    },
+                    [uuidv4()]: {
+                      type: 'rule',
+                      properties: {
+                        field: 'ReportDevice.DeviceName',
+                        operator: 'equal',
+                        value: ['dev-name'],
+                        valueSrc: ['value'],
+                        valueType: ['text']
+                      }
+                    },
+                    [uuidv4()]: {
+                      type: 'group',
+                      properties: {
+                        conjunction: 'AND'
+                      },
+                      children1: {
+                        [uuidv4()]: {
+                          type: 'rule',
+                          properties: {
+                            field: 'ReportDevice.DeviceId',
+                            operator: 'equal',
+                            value: ['dev-id'],
+                            valueSrc: ['value'],
+                            valueType: ['text']
+                          }
+                        },
+                        [uuidv4()]: {
+                          type: 'rule',
+                          properties: {
+                            field: 'ReportDevice.DeviceName',
+                            operator: 'equal',
+                            value: ['dev-name'],
+                            valueSrc: ['value'],
+                            valueType: ['text']
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 

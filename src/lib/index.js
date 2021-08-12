@@ -55,30 +55,30 @@ export const convertNodeLeafToTree = () => {
     config,
     // query: data.one.tree
     // query: data.two.tree
-    query: data.three.tree
+    // query: data.three.tree
     // query: data.four.tree
-    // query: data.five.tree
+    query: data.five.tree
   }
-}
-
-const init = ({ children }) => {
-  return Object.entries(children)
-    .map(val => val[1])
-    .map(({ type, properties, children1 }) => {
-      return type === 'rule'
-        ? {
-            ...processRuleFields({ ...properties })
-          }
-        : {
-            conjunction: properties.conjunction.toLowerCase(),
-            children: init({ children: children1 })
-          }
-    })
 }
 
 // this is where we process React Awesome Query Builder Tree state into Node Leaf state
 export const convertTreeToNodeLeaf = ({ treeQuery }) => {
-  const data = init({ children: treeQuery.children1 })
+  const recurse = ({ children }) =>
+    Object.entries(children)
+      .map(val => val[1])
+      .map(({ type, properties, children1 }) =>
+        type === 'rule'
+          ? {
+              ...processRuleFields({ ...properties })
+            }
+          : {
+              Operator: properties.conjunction.toLowerCase(),
+              Operand: recurse({ children: children1 })
+            }
+      )
 
-  return data
+  return {
+    Operator: 'and',
+    Operand: recurse({ children: treeQuery.children1 })
+  }
 }
