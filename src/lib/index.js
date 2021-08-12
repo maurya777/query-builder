@@ -54,49 +54,31 @@ export const convertNodeLeafToTree = () => {
   return {
     config,
     // query: data.one.tree
-    query: data.two.tree
-    // query: data.three.tree
+    // query: data.two.tree
+    query: data.three.tree
     // query: data.four.tree
     // query: data.five.tree
   }
 }
 
-// this is where we process React Awesome Query Builder Tree state into Node Leaf state
-export const convertTreeToNodeLeaf = ({ treeQuery }) => {
-  // techdebt: this is too crude
-  const level = JSON.stringify(treeQuery).split('"type":"group"').length - 1
-
-  // array containing object or array
-  // if object, is rule
-  // if array, is group
-  const data = Object.entries(treeQuery.children1)
+const init = ({ children }) => {
+  return Object.entries(children)
     .map(val => val[1])
     .map(({ type, properties, children1 }) => {
       return type === 'rule'
-        ? { _type: 'rule', ...properties }
+        ? {
+            ...processRuleFields({ ...properties })
+          }
         : {
-            _type: 'group',
             conjunction: properties.conjunction.toLowerCase(),
-            children: Object.entries(children1)
+            children: init({ children: children1 })
           }
     })
+}
 
-  if (level === 1) {
-    return { Operator: 'and', Operands: data.map(processRuleFields) }
-  } else if (level === 2) {
-    const _data = data.map(item => {
-      return item._type === 'rule'
-        ? processRuleFields({ ...item })
-        : {
-            Operator: item.conjunction,
-            Operands: item.children
-              .map(val => val[1])
-              .map(({ properties }) => properties)
-              .map(processRuleFields)
-          }
-    })
-    return { Operator: 'and', Operands: _data }
-  } else {
-    return treeQuery // JSON.stringify(treeQuery)
-  }
+// this is where we process React Awesome Query Builder Tree state into Node Leaf state
+export const convertTreeToNodeLeaf = ({ treeQuery }) => {
+  const data = init({ children: treeQuery.children1 })
+
+  return data
 }
