@@ -8,7 +8,7 @@ import 'react-awesome-query-builder/lib/css/compact_styles.css' //optional, for 
 
 import './style.css'
 
-import { convertNodeLeafToTree, convertTreeToNodeLeaf } from './utils'
+import { convertNodeLeafToTree, convertTreeToNodeLeaf } from '../lib'
 
 const QueryBuilder = ({ query: nodeLeafQuery, onChange }) => {
   const tree = convertNodeLeafToTree({ nodeLeafQuery })

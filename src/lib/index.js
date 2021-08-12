@@ -1,6 +1,10 @@
 import AntdConfig from 'react-awesome-query-builder/lib/config/antd'
+
 // import { Utils as QbUtils } from 'react-awesome-query-builder'
 // import { v4 as uuidv4 } from 'uuid'
+
+import { processRuleFields } from './process-fields'
+
 import data from './data'
 
 // this is where we process Node Leaf state into React Awesome Query Builder Tree state
@@ -57,31 +61,6 @@ export const convertNodeLeafToTree = () => {
   }
 }
 
-// todo: is_empty, is_not_empty, like, not_like, starts_with, ends_with, proximity
-// both is_empty and is_not_empty do not require a value - should value be present and set to empty string perhaps?
-// proximity has a more complicated API - do we cater for this?
-const _processOperator = ({ operator }) => {
-  return operator === 'equal'
-    ? '=='
-    : operator === 'not_equal'
-    ? '!='
-    : operator
-}
-
-const _processValue = ({ value, operator }) => {
-  return value[0] === undefined
-    ? ''
-    : operator === 'like'
-    ? `%${value[0]}%`
-    : value[0]
-}
-
-const _processRuleFields = ({ operator, field, value }) => ({
-  Operator: _processOperator({ operator }),
-  Attribute: field,
-  Value: _processValue({ value, operator })
-})
-
 // this is where we process React Awesome Query Builder Tree state into Node Leaf state
 export const convertTreeToNodeLeaf = ({ treeQuery }) => {
   // techdebt: this is too crude
@@ -103,17 +82,17 @@ export const convertTreeToNodeLeaf = ({ treeQuery }) => {
     })
 
   if (level === 1) {
-    return { Operator: 'and', Operands: data.map(_processRuleFields) }
+    return { Operator: 'and', Operands: data.map(processRuleFields) }
   } else if (level === 2) {
     const _data = data.map(item => {
       return item._type === 'rule'
-        ? _processRuleFields({ ...item })
+        ? processRuleFields({ ...item })
         : {
             Operator: item.conjunction,
             Operands: item.children
               .map(val => val[1])
               .map(({ properties }) => properties)
-              .map(_processRuleFields)
+              .map(processRuleFields)
           }
     })
     return { Operator: 'and', Operands: _data }
