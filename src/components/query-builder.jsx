@@ -14,11 +14,11 @@ const QueryBuilder = ({ query: nodeLeafQuery, onChange }) => {
   const tree = convertNodeLeafToTree({ nodeLeafQuery })
 
   // hide <button>'s containing "Not"
-  useEffect(() => {
-    document.querySelectorAll('.group--header button').forEach(btn => {
-      if (btn.innerHTML === '<span>Not</span>') btn.style.display = 'none'
-    })
-  }, [])
+  // useEffect(() => {
+  //   document.querySelectorAll('.group--header button').forEach(btn => {
+  //     if (btn.innerHTML === '<span>Not</span>') btn.style.display = 'none'
+  //   })
+  // }, [])
 
   return (
     <Query

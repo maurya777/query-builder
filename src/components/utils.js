@@ -49,33 +49,72 @@ export const convertNodeLeafToTree = () => {
 
   return {
     config,
-    query: data.one.tree
-    // query: data.two.tree
+    // query: data.one.tree
+    query: data.two.tree
     // query: data.three.tree
     // query: data.four.tree
     // query: data.five.tree
   }
 }
 
-// this is where we process React Awesome Query Builder Tree state into Node Leaf state
-export const convertTreeToNodeLeaf = ({ treeQuery, level = 1 }) => {
-  if (level === 1) {
-    const Operands = Object.entries(treeQuery.children1)
-      .map(val => val[1])
-      .map(({ properties }) => properties)
-      .map(({ operator, field, value }) => ({
-        Operator: operator,
-        Attribute: field,
-        Value:
-          value[0] === undefined
-            ? ''
-            : operator === 'like'
-            ? `%${value[0]}%`
-            : value[0]
-      }))
+// todo: is_empty, is_not_empty, like, not_like, starts_with, ends_with, proximity
+// both is_empty and is_not_empty do not require a value - should value be present and set to empty string perhaps?
+// proximity has a more complicated API - do we cater for this?
+const _processOperator = ({ operator }) => {
+  return operator === 'equal'
+    ? '=='
+    : operator === 'not_equal'
+    ? '!='
+    : operator
+}
 
-    return { Operator: 'and', Operands }
+const _processValue = ({ value, operator }) => {
+  return value[0] === undefined
+    ? ''
+    : operator === 'like'
+    ? `%${value[0]}%`
+    : value[0]
+}
+
+const _processRuleFields = ({ operator, field, value }) => ({
+  Operator: _processOperator({ operator }),
+  Attribute: field,
+  Value: _processValue({ value, operator })
+})
+
+// this is where we process React Awesome Query Builder Tree state into Node Leaf state
+export const convertTreeToNodeLeaf = ({ treeQuery }) => {
+  // techdebt: this is too crude
+  const level = JSON.stringify(treeQuery).split('"type":"group"').length - 1
+
+  // array containing object or array
+  // if object, is rule
+  // if array, is group
+  const data = Object.entries(treeQuery.children1)
+    .map(val => val[1])
+    .map(({ type, properties, children1 }) => {
+      return type === 'rule'
+        ? properties
+        : // type === group
+          Object.entries(children1)
+    })
+
+  if (level === 1) {
+    return { Operator: 'and', Operands: data.map(_processRuleFields) }
+  } else if (level === 2) {
+    const _data = data.map(item => {
+      return Array.isArray(item)
+        ? {
+            Operator: 'todo',
+            Operands: item
+              .map(val => val[1])
+              .map(({ properties }) => properties)
+              .map(_processRuleFields)
+          }
+        : _processRuleFields({ ...item })
+    })
+    return { Operator: 'todo', Operands: _data }
   } else {
-    return treeQuery
+    return treeQuery // JSON.stringify(treeQuery)
   }
 }

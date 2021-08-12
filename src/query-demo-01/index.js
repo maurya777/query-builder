@@ -8,12 +8,12 @@ const App = () => {
     document.getElementById('tree-query').innerHTML = JSON.stringify(
       treeQuery,
       null,
-      2
+      4
     )
     document.getElementById('node-leaf-query').innerHTML = JSON.stringify(
       query,
       null,
-      2
+      4
     )
   }
 
@@ -34,7 +34,7 @@ const App = () => {
         <span>
           <i>i.e. processed tree leaf query</i>
         </span>
-        <xmp id="node-leaf-query">{JSON.stringify({}, null, 2)}</xmp>
+        <xmp id="node-leaf-query">{JSON.stringify({}, null, 4)}</xmp>
       </div>
     </div>
   )

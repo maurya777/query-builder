@@ -50,6 +50,11 @@ const data = {
       Operator: 'and',
       Operands: [
         {
+          Operator: 'equal',
+          Attribute: 'ReportDevice.ComputerId',
+          Value: '123'
+        },
+        {
           Operator: 'like',
           Attribute: 'ReportDevice.ComputerName',
           Value: '%comp%'
@@ -75,6 +80,16 @@ const data = {
       id: QbUtils.uuid(),
       type: 'group',
       children1: {
+        [uuidv4()]: {
+          type: 'rule',
+          properties: {
+            field: 'ReportDevice.ComputerId',
+            operator: 'equal',
+            value: ['123'],
+            valueSrc: ['value'],
+            valueType: ['text']
+          }
+        },
         [uuidv4()]: {
           type: 'rule',
           properties: {
