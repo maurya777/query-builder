@@ -1,6 +1,6 @@
 import React from 'react'
 
-import QueryBuilder from '../components/query-builder'
+import QueryBuilder from './components/query-builder'
 
 const App = () => {
   // NB Our component returns query (i.e. nodeLeafQuery), BUT also treeQuery for development

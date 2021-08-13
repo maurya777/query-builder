@@ -48,11 +48,11 @@ export const convertNodeLeafToTree = () => {
     }
   }
 
-  const num = window.location.hash.split('#/?level=')[1]
+  const num = window.location.hash.split('#/tree-to-nodeleaf?level=')[1]
 
   return {
     config,
-    query: data[num].tree || data['01'].tree
+    query: data[num]?.tree || data['01'].tree
   }
 }
 
