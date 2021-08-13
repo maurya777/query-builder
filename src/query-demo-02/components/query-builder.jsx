@@ -8,72 +8,10 @@ import 'react-awesome-query-builder/lib/css/compact_styles.css' //optional, for 
 
 import './style.css'
 
-import { convertTreeToNodeLeaf } from '../lib'
+import { convertNodeLeafToTree } from '../lib'
 
-import AntdConfig from 'react-awesome-query-builder/lib/config/antd'
-
-import data from './data'
-
-const getTreeState = () => {
-  const config = {
-    ...AntdConfig,
-    fields: {
-      'ReportDevice.ComputerName': {
-        label: 'ReportDevice.ComputerName',
-        type: 'text'
-      },
-      'ReportDevice.DomainName': {
-        label: 'ReportDevice.DomainName',
-        type: 'text'
-      },
-      'ReportDevice.DeviceName': {
-        label: 'ReportDevice.DeviceName',
-        type: 'text'
-      },
-      'ReportDevice.ComputerNumber': {
-        label: 'ReportDevice.ComputerNumber',
-        type: 'text'
-      },
-      'ReportDevice.DomainNumber': {
-        label: 'ReportDevice.DomainNumber',
-        type: 'text'
-      },
-      'ReportDevice.DeviceNumber': {
-        label: 'ReportDevice.DeviceNumber',
-        type: 'text'
-      },
-      'ReportDevice.ComputerId': {
-        label: 'ReportDevice.ComputerId',
-        type: 'text'
-      },
-      'ReportDevice.DomainId': {
-        label: 'ReportDevice.DomainId',
-        type: 'text'
-      },
-      'ReportDevice.DeviceId': {
-        label: 'ReportDevice.DeviceId',
-        type: 'text'
-      }
-    }
-  }
-
-  const num = window.location.hash.split('#/nodeleaf-to-tree?level=')[1]
-
-  return {
-    config,
-    query: data[num]?.tree || data['01'].tree
-  }
-}
-
-const QueryBuilder = ({ onChange }) => {
-  const treeState = getTreeState()
-
-  // hide <button>'s containing "Not"
-  // useEffect(() => {
-  //   document.querySelectorAll('.group--header button').forEach(btn => {
-  //     if (btn.innerHTML === '<span>Not</span>') btn.style.display = 'none'
-  //   })
-  // }, [])
+const QueryBuilder = ({ query: nodeLeafQuery, onChange }) => {
+  const treeState = convertNodeLeafToTree({ nodeLeafQuery })
 
   return (
     <Query
@@ -86,16 +24,14 @@ const QueryBuilder = ({ onChange }) => {
         // Tip: for better performance you can apply `throttle` - see `examples/demo`
         onChange({
           treeQuery: QbUtils.getTree(immutableTree),
-          query: convertTreeToNodeLeaf({
-            treeQuery: QbUtils.getTree(immutableTree)
-          }),
+          query: nodeLeafQuery,
           outputs: {
-            queryString: QbUtils.queryString(immutableTree, treeState.config),
-            sqlFormat: QbUtils.sqlFormat(immutableTree, treeState.config),
-            mongodbFormat: QbUtils.mongodbFormat(
-              immutableTree,
-              treeState.config
-            )
+            // queryString: QbUtils.queryString(immutableTree, treeState.config),
+            // sqlFormat: QbUtils.sqlFormat(immutableTree, treeState.config),
+            // mongodbFormat: QbUtils.mongodbFormat(
+            //   immutableTree,
+            //   treeState.config
+            // )
           }
         })
       }}

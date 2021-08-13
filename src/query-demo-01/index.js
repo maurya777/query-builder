@@ -24,12 +24,12 @@ const App = () => {
 
   return (
     <div className="app">
-      <QueryBuilder query={{}} onChange={onChange} />
+      <QueryBuilder onChange={onChange} />
 
       <div className="panel">
         <h3 className="title">Tree Query</h3>
-        <span style={{ visibility: 'hidden' }}>
-          <i>---</i>
+        <span>
+          <i>entered manually into demo via data.js and query string in hash</i>
         </span>
         <xmp id="tree-query"></xmp>
       </div>
@@ -37,7 +37,7 @@ const App = () => {
       <div className="panel">
         <h3 className="title">New Node / Leaf Query</h3>
         <span>
-          <i>i.e. processed tree leaf query</i>
+          <i>i.e. generated via processing tree query</i>
         </span>
         <xmp id="node-leaf-query">{JSON.stringify({}, null, 4)}</xmp>
       </div>

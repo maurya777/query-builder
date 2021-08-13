@@ -1,6 +1,7 @@
 import React from 'react'
 
 import QueryBuilder from './components/query-builder'
+import data from './components/data'
 
 const App = () => {
   // NB Our component returns query (i.e. nodeLeafQuery), BUT also treeQuery for development
@@ -24,20 +25,20 @@ const App = () => {
 
   return (
     <div className="app">
-      <QueryBuilder query={{}} onChange={onChange} />
+      <QueryBuilder query={data['01'].nodeLeaf} onChange={onChange} />
 
       <div className="panel">
         <h3 className="title">New Node / Leaf Query</h3>
         <span>
-          <i>i.e. processed tree leaf query</i>
+          <i>entered manually into demo via data.js and query string in hash</i>
         </span>
         <xmp id="node-leaf-query">{JSON.stringify({}, null, 4)}</xmp>
       </div>
 
       <div className="panel">
         <h3 className="title">Tree Query</h3>
-        <span style={{ visibility: 'hidden' }}>
-          <i>---</i>
+        <span>
+          <i>i.e. generated via processing node leaf query</i>
         </span>
         <xmp id="tree-query"></xmp>
       </div>
