@@ -27,19 +27,19 @@ const App = () => {
       <QueryBuilder query={{}} onChange={onChange} />
 
       <div className="panel">
-        <h3 className="title">Tree Query</h3>
-        <span style={{ visibility: 'hidden' }}>
-          <i>---</i>
-        </span>
-        <xmp id="tree-query"></xmp>
-      </div>
-
-      <div className="panel">
         <h3 className="title">New Node / Leaf Query</h3>
         <span>
           <i>i.e. processed tree leaf query</i>
         </span>
         <xmp id="node-leaf-query">{JSON.stringify({}, null, 4)}</xmp>
+      </div>
+
+      <div className="panel">
+        <h3 className="title">Tree Query</h3>
+        <span style={{ visibility: 'hidden' }}>
+          <i>---</i>
+        </span>
+        <xmp id="tree-query"></xmp>
       </div>
 
       <div
