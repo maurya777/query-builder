@@ -1,8 +1,5 @@
 import AntdConfig from 'react-awesome-query-builder/lib/config/antd'
 
-// import { Utils as QbUtils } from 'react-awesome-query-builder'
-// import { v4 as uuidv4 } from 'uuid'
-
 import { processRuleFields } from './process-fields'
 
 import data from './data'
@@ -51,13 +48,11 @@ export const convertNodeLeafToTree = () => {
     }
   }
 
+  const num = window.location.hash.split('#/?level=')[1]
+
   return {
     config,
-    // query: data.one.tree
-    // query: data.two.tree
-    // query: data.three.tree
-    // query: data.four.tree
-    query: data.five.tree
+    query: data[num].tree || data['01'].tree
   }
 }
 
@@ -73,12 +68,12 @@ export const convertTreeToNodeLeaf = ({ treeQuery }) => {
             }
           : {
               Operator: properties.conjunction.toLowerCase(),
-              Operand: recurse({ children: children1 })
+              Operands: recurse({ children: children1 })
             }
       )
 
   return {
     Operator: 'and',
-    Operand: recurse({ children: treeQuery.children1 })
+    Operands: recurse({ children: treeQuery.children1 })
   }
 }

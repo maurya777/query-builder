@@ -2,7 +2,7 @@ import { Utils as QbUtils } from 'react-awesome-query-builder'
 import { v4 as uuidv4 } from 'uuid'
 
 const data = {
-  one: {
+  '01': {
     nodeLeaf: {
       Operator: 'and',
       Operands: [
@@ -45,12 +45,12 @@ const data = {
       }
     }
   },
-  two: {
+  '02': {
     nodeLeaf: {
       Operator: 'and',
       Operands: [
         {
-          Operator: 'equal',
+          Operator: '==',
           Attribute: 'ReportDevice.ComputerId',
           Value: '123'
         },
@@ -131,12 +131,12 @@ const data = {
       }
     }
   },
-  three: {
+  '03': {
     nodeLeaf: {
       Operator: 'and',
       Operands: [
         {
-          Operator: 'equal',
+          Operator: '==',
           Attribute: 'ReportDevice.ComputerId',
           Value: 'comp-id-123'
         },
@@ -245,8 +245,62 @@ const data = {
       }
     }
   },
-  four: {
-    nodeLeaf: {},
+  '04': {
+    nodeLeaf: {
+      Operator: 'and',
+      Operands: [
+        {
+          Operator: '==',
+          Attribute: 'ReportDevice.ComputerId',
+          Value: 'comp-id-123'
+        },
+        {
+          Operator: 'and',
+          Operands: [
+            {
+              Operator: '==',
+              Attribute: 'ReportDevice.DomainName',
+              Value: 'dom-name'
+            },
+            {
+              Operator: 'like',
+              Attribute: 'ReportDevice.ComputerName',
+              Value: '%comp-name%'
+            },
+            {
+              Operator: 'and',
+              Operands: [
+                {
+                  Operator: '==',
+                  Attribute: 'ReportDevice.DeviceId',
+                  Value: 'dev-id'
+                },
+                {
+                  Operator: '==',
+                  Attribute: 'ReportDevice.DeviceName',
+                  Value: 'dev-name'
+                },
+                {
+                  Operator: 'and',
+                  Operands: [
+                    {
+                      Operator: '==',
+                      Attribute: 'ReportDevice.DomainId',
+                      Value: 'dom-id'
+                    },
+                    {
+                      Operator: '==',
+                      Attribute: 'ReportDevice.DomainNumber',
+                      Value: 'dom-num'
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
     tree: {
       id: QbUtils.uuid(),
       type: 'group',
@@ -322,9 +376,9 @@ const data = {
                     [uuidv4()]: {
                       type: 'rule',
                       properties: {
-                        field: 'ReportDevice.DeviceId',
+                        field: 'ReportDevice.DomainId',
                         operator: 'equal',
-                        value: ['dev-id'],
+                        value: ['dom-id'],
                         valueSrc: ['value'],
                         valueType: ['text']
                       }
@@ -332,9 +386,9 @@ const data = {
                     [uuidv4()]: {
                       type: 'rule',
                       properties: {
-                        field: 'ReportDevice.DeviceName',
+                        field: 'ReportDevice.DomainNumber',
                         operator: 'equal',
-                        value: ['dev-name'],
+                        value: ['dom-num'],
                         valueSrc: ['value'],
                         valueType: ['text']
                       }
@@ -348,8 +402,72 @@ const data = {
       }
     }
   },
-  five: {
-    nodeLeaf: {},
+  '05': {
+    nodeLeaf: {
+      Operator: 'and',
+      Operands: [
+        {
+          Operator: '==',
+          Attribute: 'ReportDevice.ComputerId',
+          Value: 'comp-id-123'
+        },
+        {
+          Operator: 'and',
+          Operands: [
+            {
+              Operator: '==',
+              Attribute: 'ReportDevice.DomainName',
+              Value: 'dom-name'
+            },
+            {
+              Operator: 'like',
+              Attribute: 'ReportDevice.ComputerName',
+              Value: '%comp-name%'
+            },
+            {
+              Operator: 'and',
+              Operands: [
+                {
+                  Operator: '==',
+                  Attribute: 'ReportDevice.DeviceId',
+                  Value: 'dev-id'
+                },
+                {
+                  Operator: '==',
+                  Attribute: 'ReportDevice.DeviceName',
+                  Value: 'dev-name'
+                },
+                {
+                  Operator: 'and',
+                  Operands: [
+                    {
+                      Operator: '==',
+                      Attribute: 'ReportDevice.DomainId',
+                      Value: 'dom-id'
+                    },
+                    {
+                      Operator: '==',
+                      Attribute: 'ReportDevice.DomainNumber',
+                      Value: 'dom-num'
+                    },
+                    {
+                      Operator: 'and',
+                      Operands: [
+                        {
+                          Operator: '==',
+                          Attribute: 'ReportDevice.DeviceNumber',
+                          Value: 'dev-num-999'
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
     tree: {
       id: QbUtils.uuid(),
       type: 'group',
@@ -425,9 +543,9 @@ const data = {
                     [uuidv4()]: {
                       type: 'rule',
                       properties: {
-                        field: 'ReportDevice.DeviceId',
+                        field: 'ReportDevice.DomainId',
                         operator: 'equal',
-                        value: ['dev-id'],
+                        value: ['dom-id'],
                         valueSrc: ['value'],
                         valueType: ['text']
                       }
@@ -435,9 +553,9 @@ const data = {
                     [uuidv4()]: {
                       type: 'rule',
                       properties: {
-                        field: 'ReportDevice.DeviceName',
+                        field: 'ReportDevice.DomainNumber',
                         operator: 'equal',
-                        value: ['dev-name'],
+                        value: ['dom-num'],
                         valueSrc: ['value'],
                         valueType: ['text']
                       }
@@ -451,19 +569,9 @@ const data = {
                         [uuidv4()]: {
                           type: 'rule',
                           properties: {
-                            field: 'ReportDevice.DeviceId',
+                            field: 'ReportDevice.DeviceNumber',
                             operator: 'equal',
-                            value: ['dev-id'],
-                            valueSrc: ['value'],
-                            valueType: ['text']
-                          }
-                        },
-                        [uuidv4()]: {
-                          type: 'rule',
-                          properties: {
-                            field: 'ReportDevice.DeviceName',
-                            operator: 'equal',
-                            value: ['dev-name'],
+                            value: ['dev-num-999'],
                             valueSrc: ['value'],
                             valueType: ['text']
                           }

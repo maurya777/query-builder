@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
-const demos = ['01']
+const demos = ['01', '02', '03', '04', '05']
 
 const Menu = ({ children }) => (
   <div>
@@ -20,7 +20,7 @@ const Menu = ({ children }) => (
     `}</style>
     <div className="nav">
       {demos.map(demo => (
-        <NavLink key={demo} to={`/${demo}`}>
+        <NavLink key={demo} to={`?level=${demo}`}>
           {demo}
         </NavLink>
       ))}

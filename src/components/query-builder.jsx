@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Query, Builder, Utils as QbUtils } from 'react-awesome-query-builder'
 
 import 'antd/dist/antd.css'
