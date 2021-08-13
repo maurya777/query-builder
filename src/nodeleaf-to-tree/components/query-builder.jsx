@@ -6,30 +6,33 @@ import 'antd/dist/antd.css'
 import 'react-awesome-query-builder/lib/css/styles.css'
 import 'react-awesome-query-builder/lib/css/compact_styles.css' //optional, for more compact styles
 
-import { convertNodeLeafToTree } from '../lib'
+import AntdConfig from 'react-awesome-query-builder/lib/config/antd'
 
-const QueryBuilder = ({ query: nodeLeafQuery, onChange }) => {
-  const treeState = convertNodeLeafToTree({ nodeLeafQuery })
+import { convertNodeLeafToTree } from '../../lib'
+
+const QueryBuilder = ({ nodeLeafQuery, onChange }) => {
+  // hide <button>'s containing "Not"
+  // useEffect(() => {
+  //   document.querySelectorAll('.group--header button').forEach(btn => {
+  //     if (btn.innerHTML === '<span>Not</span>') btn.style.display = 'none'
+  //   })
+  // }, [])
+
+  const { fields, query } = convertNodeLeafToTree({ nodeLeafQuery })
+  const config = { ...AntdConfig, fields }
 
   return (
     <Query
-      {...treeState.config}
-      value={QbUtils.checkTree(
-        QbUtils.loadTree(treeState.query),
-        treeState.config
-      )}
+      {...config}
+      value={QbUtils.checkTree(QbUtils.loadTree(query), config)}
       onChange={(immutableTree, config) => {
         // Tip: for better performance you can apply `throttle` - see `examples/demo`
         onChange({
-          treeQuery: QbUtils.getTree(immutableTree),
-          query: nodeLeafQuery,
+          treeQuery: query,
           outputs: {
-            // queryString: QbUtils.queryString(immutableTree, treeState.config),
-            // sqlFormat: QbUtils.sqlFormat(immutableTree, treeState.config),
-            // mongodbFormat: QbUtils.mongodbFormat(
-            //   immutableTree,
-            //   treeState.config
-            // )
+            queryString: QbUtils.queryString(immutableTree, config),
+            sqlFormat: QbUtils.sqlFormat(immutableTree, config),
+            mongodbFormat: QbUtils.mongodbFormat(immutableTree, config)
           }
         })
       }}

@@ -2,6 +2,44 @@ import { Utils as QbUtils } from 'react-awesome-query-builder'
 import { v4 as uuidv4 } from 'uuid'
 
 const data = {
+  fields: {
+    'ReportDevice.ComputerName': {
+      label: 'ReportDevice.ComputerName',
+      type: 'text'
+    },
+    'ReportDevice.DomainName': {
+      label: 'ReportDevice.DomainName',
+      type: 'text'
+    },
+    'ReportDevice.DeviceName': {
+      label: 'ReportDevice.DeviceName',
+      type: 'text'
+    },
+    'ReportDevice.ComputerNumber': {
+      label: 'ReportDevice.ComputerNumber',
+      type: 'text'
+    },
+    'ReportDevice.DomainNumber': {
+      label: 'ReportDevice.DomainNumber',
+      type: 'text'
+    },
+    'ReportDevice.DeviceNumber': {
+      label: 'ReportDevice.DeviceNumber',
+      type: 'text'
+    },
+    'ReportDevice.ComputerId': {
+      label: 'ReportDevice.ComputerId',
+      type: 'text'
+    },
+    'ReportDevice.DomainId': {
+      label: 'ReportDevice.DomainId',
+      type: 'text'
+    },
+    'ReportDevice.DeviceId': {
+      label: 'ReportDevice.DeviceId',
+      type: 'text'
+    }
+  },
   '01': {
     nodeLeaf: {
       Operator: 'and',

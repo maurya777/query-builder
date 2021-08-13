@@ -5,9 +5,9 @@ import QueryBuilder from './components/query-builder'
 import data from '../data'
 
 const App = () => {
-  const onChange = ({ query, outputs }) => {
+  const onChange = ({ nodeLeafQuery, outputs }) => {
     document.getElementById('node-leaf-query').innerHTML = JSON.stringify(
-      query,
+      nodeLeafQuery,
       null,
       4
     )
@@ -22,7 +22,10 @@ const App = () => {
 
   return (
     <div className="app">
-      <QueryBuilder onChange={onChange} />
+      <QueryBuilder
+        treeQuery={{ fields: data.fields, query: data[num].tree }}
+        onChange={onChange}
+      />
 
       <div className="panel panel--blue">
         <h3 className="title">Tree Query (Static)</h3>
@@ -33,7 +36,7 @@ const App = () => {
       </div>
 
       <div className="panel panel--red">
-        <h3 className="title">New Node / Leaf Query</h3>
+        <h3 className="title">Node Leaf Query</h3>
         <span>
           <i>i.e. generated via processing tree query</i>
         </span>

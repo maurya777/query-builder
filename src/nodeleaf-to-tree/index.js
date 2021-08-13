@@ -5,8 +5,7 @@ import QueryBuilder from './components/query-builder'
 import data from '../data'
 
 const App = () => {
-  // NB Our component returns query (i.e. nodeLeafQuery), BUT also treeQuery for development
-  const onChange = ({ query, treeQuery, outputs }) => {
+  const onChange = ({ treeQuery, outputs }) => {
     document.getElementById('tree-query').innerHTML = JSON.stringify(
       treeQuery,
       null,
@@ -23,10 +22,10 @@ const App = () => {
 
   return (
     <div className="app">
-      <QueryBuilder query={data['01'].nodeLeaf} onChange={onChange} />
+      <QueryBuilder nodeLeafQuery={data[num].nodeLeaf} onChange={onChange} />
 
       <div className="panel panel--blue">
-        <h3 className="title">New Node / Leaf Query (Static)</h3>
+        <h3 className="title">Node Leaf Query (Static)</h3>
         <span>
           <i>entered manually into demo via data.js and query string in hash</i>
         </span>
