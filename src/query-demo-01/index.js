@@ -4,7 +4,7 @@ import QueryBuilder from '../components/query-builder'
 
 const App = () => {
   // NB Our component returns query (i.e. nodeLeafQuery), BUT also treeQuery for development
-  const onChange = ({ query, treeQuery }) => {
+  const onChange = ({ query, treeQuery, outputs }) => {
     document.getElementById('tree-query').innerHTML = JSON.stringify(
       treeQuery,
       null,
@@ -12,6 +12,11 @@ const App = () => {
     )
     document.getElementById('node-leaf-query').innerHTML = JSON.stringify(
       query,
+      null,
+      4
+    )
+    document.getElementById('outputs').innerHTML = JSON.stringify(
+      outputs,
       null,
       4
     )
@@ -35,6 +40,19 @@ const App = () => {
           <i>i.e. processed tree leaf query</i>
         </span>
         <xmp id="node-leaf-query">{JSON.stringify({}, null, 4)}</xmp>
+      </div>
+      <div
+        className="panel"
+        style={{
+          width: '100%',
+          margin: '0'
+        }}
+      >
+        <h3 className="title">Outputs</h3>
+        <span style={{ visibility: 'hidden' }}>
+          <i>---</i>
+        </span>
+        <xmp id="outputs">{JSON.stringify({}, null, 4)}</xmp>
       </div>
     </div>
   )

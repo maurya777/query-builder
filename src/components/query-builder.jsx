@@ -30,7 +30,12 @@ const QueryBuilder = ({ query: nodeLeafQuery, onChange }) => {
           treeQuery: QbUtils.getTree(immutableTree),
           query: convertTreeToNodeLeaf({
             treeQuery: QbUtils.getTree(immutableTree)
-          }) // nodeLeafQuery
+          }),
+          outputs: {
+            queryString: QbUtils.queryString(immutableTree, tree.config),
+            sqlFormat: QbUtils.sqlFormat(immutableTree, tree.config),
+            mongodbFormat: QbUtils.mongodbFormat(immutableTree, tree.config)
+          }
         })
       }}
       renderBuilder={props => <Builder {...props} />}

@@ -5,11 +5,10 @@
 - ~~host on netlify~~ (https://query-builder-2021.netlify.app/)
 - ~~make trivial styling change~~
 - ~~create diagram for comparing Tree Query (lib) vs Node Leaf Query~~
-- parse basic query (1 level deep)
-- parse nested query (2 levels deep)
-- parse nested query (3 levels deep)
-- parse nested query (4 levels deep)
-- parse nested query (5 levels deep)
+- ~~tests w/ Jest for library functions~~
+- ~~demo various outputs~~
+- ~~library: function to convert Tree Query into Node Leaf Query~~
+- library: function to convert Node Leaf Query into Tree Query
 - include custom component
 
 **Diagram: Tree Query vs Node Leaf**
