@@ -9,7 +9,6 @@ import {
 } from './'
 
 import { Utils as QbUtils } from 'react-awesome-query-builder'
-import { v4 as uuidv4 } from 'uuid'
 
 import data from '../data'
 
@@ -22,27 +21,32 @@ export const convertNodeLeafToTree = ({ nodeLeafQuery }) => {
     children1: {}
   }
 
-  nodeLeafQuery.Operands.forEach(op => {
+  nodeLeafQuery.Operands.forEach((op, a) => {
     // level 1
     if (!op.Operands) {
-      const id_1 = uuidv4()
-
-      obj.children1[id_1] = {
+      obj.children1[`rule0${a + 1}`] = {
         type: 'rule',
         properties: op
       }
       // level 2
     } else {
-      obj.children1[uuidv4()] = {
+      obj.children1[`rule0${a + 1}`] = {
         type: 'group',
         properties: {
-          conjunction: 'AND' // todo: get this from data
+          conjunction: op.Operator.toUpperCase()
         },
         children1: {}
       }
-      // op.Operands.forEach(op => {
-      //   console.log(op)
-      // })
+      op.Operands.forEach((op, b) => {
+        if (!op.Operands) {
+          obj.children1[`rule0${a + 1}`].children1[`rule0${a + 1 + b + 1}`] = {
+            type: 'rule',
+            properties: op
+          }
+          // level 3
+        } else {
+        }
+      })
     }
   })
 
@@ -63,6 +67,7 @@ describe('Process React Awesome Query Builder "Tree" state into "Node Leaf" stat
   })
 })
 
+/* * /
 describe('Process React Awesome Query Builder "Tree" state into "Node Leaf" state', () => {
   test('01 level deep', () => {
     expect(convertTreeToNodeLeaf({ treeQuery: data['01'].tree })).toEqual(
@@ -90,3 +95,4 @@ describe('Process React Awesome Query Builder "Tree" state into "Node Leaf" stat
     )
   })
 })
+/* */

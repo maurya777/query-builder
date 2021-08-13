@@ -1,5 +1,4 @@
 import { Utils as QbUtils } from 'react-awesome-query-builder'
-import { v4 as uuidv4 } from 'uuid'
 
 const data = {
   fields: {
@@ -60,7 +59,7 @@ const data = {
       id: QbUtils.uuid(),
       type: 'group',
       children1: {
-        [uuidv4()]: {
+        rule01: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.ComputerName',
@@ -70,7 +69,7 @@ const data = {
             valueType: ['text']
           }
         },
-        [uuidv4()]: {
+        rule02: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.DomainName',
@@ -118,7 +117,7 @@ const data = {
       id: QbUtils.uuid(),
       type: 'group',
       children1: {
-        [uuidv4()]: {
+        rule01: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.ComputerId',
@@ -128,7 +127,7 @@ const data = {
             valueType: ['text']
           }
         },
-        [uuidv4()]: {
+        rule02: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.ComputerName',
@@ -138,13 +137,13 @@ const data = {
             valueType: ['text']
           }
         },
-        [uuidv4()]: {
+        rule03: {
           type: 'group',
           properties: {
             conjunction: 'AND'
           },
           children1: {
-            [uuidv4()]: {
+            rule04: {
               type: 'rule',
               properties: {
                 field: 'ReportDevice.DomainName',
@@ -154,7 +153,7 @@ const data = {
                 valueType: ['text']
               }
             },
-            [uuidv4()]: {
+            rule05: {
               type: 'rule',
               properties: {
                 field: 'ReportDevice.DeviceName',
@@ -214,7 +213,7 @@ const data = {
       id: QbUtils.uuid(),
       type: 'group',
       children1: {
-        [uuidv4()]: {
+        rule01: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.ComputerId',
@@ -224,7 +223,7 @@ const data = {
             valueType: ['text']
           }
         },
-        [uuidv4()]: {
+        rule02: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.ComputerName',
@@ -234,13 +233,13 @@ const data = {
             valueType: ['text']
           }
         },
-        [uuidv4()]: {
+        rule03: {
           type: 'group',
           properties: {
             conjunction: 'AND'
           },
           children1: {
-            [uuidv4()]: {
+            rule04: {
               type: 'rule',
               properties: {
                 field: 'ReportDevice.DomainName',
@@ -250,13 +249,13 @@ const data = {
                 valueType: ['text']
               }
             },
-            [uuidv4()]: {
+            rule05: {
               type: 'group',
               properties: {
                 conjunction: 'AND'
               },
               children1: {
-                [uuidv4()]: {
+                rule06: {
                   type: 'rule',
                   properties: {
                     field: 'ReportDevice.DeviceId',
@@ -266,7 +265,7 @@ const data = {
                     valueType: ['text']
                   }
                 },
-                [uuidv4()]: {
+                rule07: {
                   type: 'rule',
                   properties: {
                     field: 'ReportDevice.DeviceName',
@@ -343,7 +342,7 @@ const data = {
       id: QbUtils.uuid(),
       type: 'group',
       children1: {
-        [uuidv4()]: {
+        rule01: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.ComputerId',
@@ -353,13 +352,13 @@ const data = {
             valueType: ['text']
           }
         },
-        [uuidv4()]: {
+        rule02: {
           type: 'group',
           properties: {
             conjunction: 'AND'
           },
           children1: {
-            [uuidv4()]: {
+            rule03: {
               type: 'rule',
               properties: {
                 field: 'ReportDevice.DomainName',
@@ -369,7 +368,7 @@ const data = {
                 valueType: ['text']
               }
             },
-            [uuidv4()]: {
+            rule04: {
               type: 'rule',
               properties: {
                 field: 'ReportDevice.ComputerName',
@@ -379,13 +378,13 @@ const data = {
                 valueType: ['text']
               }
             },
-            [uuidv4()]: {
+            rule05: {
               type: 'group',
               properties: {
                 conjunction: 'AND'
               },
               children1: {
-                [uuidv4()]: {
+                rule06: {
                   type: 'rule',
                   properties: {
                     field: 'ReportDevice.DeviceId',
@@ -395,7 +394,7 @@ const data = {
                     valueType: ['text']
                   }
                 },
-                [uuidv4()]: {
+                rule07: {
                   type: 'rule',
                   properties: {
                     field: 'ReportDevice.DeviceName',
@@ -405,13 +404,13 @@ const data = {
                     valueType: ['text']
                   }
                 },
-                [uuidv4()]: {
+                rule08: {
                   type: 'group',
                   properties: {
                     conjunction: 'AND'
                   },
                   children1: {
-                    [uuidv4()]: {
+                    rule09: {
                       type: 'rule',
                       properties: {
                         field: 'ReportDevice.DomainId',
@@ -421,7 +420,7 @@ const data = {
                         valueType: ['text']
                       }
                     },
-                    [uuidv4()]: {
+                    rule10: {
                       type: 'rule',
                       properties: {
                         field: 'ReportDevice.DomainNumber',
@@ -510,7 +509,7 @@ const data = {
       id: QbUtils.uuid(),
       type: 'group',
       children1: {
-        [uuidv4()]: {
+        rule01: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.ComputerId',
@@ -520,13 +519,13 @@ const data = {
             valueType: ['text']
           }
         },
-        [uuidv4()]: {
+        rule02: {
           type: 'group',
           properties: {
             conjunction: 'AND'
           },
           children1: {
-            [uuidv4()]: {
+            rule03: {
               type: 'rule',
               properties: {
                 field: 'ReportDevice.DomainName',
@@ -536,7 +535,7 @@ const data = {
                 valueType: ['text']
               }
             },
-            [uuidv4()]: {
+            rule04: {
               type: 'rule',
               properties: {
                 field: 'ReportDevice.ComputerName',
@@ -546,13 +545,13 @@ const data = {
                 valueType: ['text']
               }
             },
-            [uuidv4()]: {
+            rule05: {
               type: 'group',
               properties: {
                 conjunction: 'AND'
               },
               children1: {
-                [uuidv4()]: {
+                rule06: {
                   type: 'rule',
                   properties: {
                     field: 'ReportDevice.DeviceId',
@@ -562,7 +561,7 @@ const data = {
                     valueType: ['text']
                   }
                 },
-                [uuidv4()]: {
+                rule07: {
                   type: 'rule',
                   properties: {
                     field: 'ReportDevice.DeviceName',
@@ -572,13 +571,13 @@ const data = {
                     valueType: ['text']
                   }
                 },
-                [uuidv4()]: {
+                rule08: {
                   type: 'group',
                   properties: {
                     conjunction: 'AND'
                   },
                   children1: {
-                    [uuidv4()]: {
+                    rule09: {
                       type: 'rule',
                       properties: {
                         field: 'ReportDevice.DomainId',
@@ -588,7 +587,7 @@ const data = {
                         valueType: ['text']
                       }
                     },
-                    [uuidv4()]: {
+                    rule10: {
                       type: 'rule',
                       properties: {
                         field: 'ReportDevice.DomainNumber',
@@ -598,13 +597,13 @@ const data = {
                         valueType: ['text']
                       }
                     },
-                    [uuidv4()]: {
+                    rule11: {
                       type: 'group',
                       properties: {
                         conjunction: 'AND'
                       },
                       children1: {
-                        [uuidv4()]: {
+                        rule12: {
                           type: 'rule',
                           properties: {
                             field: 'ReportDevice.DeviceNumber',
