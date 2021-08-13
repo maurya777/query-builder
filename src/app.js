@@ -3,6 +3,8 @@ import { withNav } from './with-nav'
 import TreeToNodeleaf from './tree-to-nodeleaf'
 import NodeleafToTree from './nodeleaf-to-tree'
 
+import './style.css'
+
 const App = () => {
   return (
     <Router>

@@ -1,4 +1,8 @@
-import { convertTreeToNodeLeaf, convertNodeLeafToTree } from './'
+import {
+  convertTreeToNodeLeaf
+  // convertNodeLeafToTree
+} from './'
+
 import data from './data'
 
 describe('Process React Awesome Query Builder "Tree" state into "Node Leaf" state', () => {

@@ -1,6 +1,6 @@
 import AntdConfig from 'react-awesome-query-builder/lib/config/antd'
 
-import data from '../components/data'
+import data from '../../data'
 
 export const convertNodeLeafToTree = ({ nodeLeafQuery }) => {
   // todo: process nodeLeafQuery

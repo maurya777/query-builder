@@ -2,14 +2,10 @@ import React from 'react'
 
 import QueryBuilder from './components/query-builder'
 
+import data from '../data'
+
 const App = () => {
-  // NB Our component returns query (i.e. nodeLeafQuery), BUT also treeQuery for development
-  const onChange = ({ query, treeQuery, outputs }) => {
-    document.getElementById('tree-query').innerHTML = JSON.stringify(
-      treeQuery,
-      null,
-      4
-    )
+  const onChange = ({ query, outputs }) => {
     document.getElementById('node-leaf-query').innerHTML = JSON.stringify(
       query,
       null,
@@ -22,19 +18,21 @@ const App = () => {
     )
   }
 
+  const num = window.location.hash.split('?level=')[1]
+
   return (
     <div className="app">
       <QueryBuilder onChange={onChange} />
 
-      <div className="panel">
-        <h3 className="title">Tree Query</h3>
+      <div className="panel panel--blue">
+        <h3 className="title">Tree Query (Static)</h3>
         <span>
           <i>entered manually into demo via data.js and query string in hash</i>
         </span>
-        <xmp id="tree-query"></xmp>
+        <xmp>{JSON.stringify(data[num].tree, null, 4)}</xmp>
       </div>
 
-      <div className="panel">
+      <div className="panel panel--red">
         <h3 className="title">New Node / Leaf Query</h3>
         <span>
           <i>i.e. generated via processing tree query</i>

@@ -6,8 +6,6 @@ import 'antd/dist/antd.css'
 import 'react-awesome-query-builder/lib/css/styles.css'
 import 'react-awesome-query-builder/lib/css/compact_styles.css' //optional, for more compact styles
 
-import './style.css'
-
 import { convertNodeLeafToTree } from '../lib'
 
 const QueryBuilder = ({ query: nodeLeafQuery, onChange }) => {

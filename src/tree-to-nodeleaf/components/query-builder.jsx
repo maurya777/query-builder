@@ -6,13 +6,11 @@ import 'antd/dist/antd.css'
 import 'react-awesome-query-builder/lib/css/styles.css'
 import 'react-awesome-query-builder/lib/css/compact_styles.css' //optional, for more compact styles
 
-import './style.css'
-
 import { convertTreeToNodeLeaf } from '../lib'
 
 import AntdConfig from 'react-awesome-query-builder/lib/config/antd'
 
-import data from './data'
+import data from '../../data'
 
 const getTreeState = () => {
   const config = {
