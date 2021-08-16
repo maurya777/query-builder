@@ -24,13 +24,12 @@ export const convertNodeLeafToTree = ({ nodeLeafQuery }) => {
   }
 
   nodeLeafQuery.Operands.forEach((op, a) => {
-    // level 1
+    // set level 1 children
     if (!op.Operands) {
       obj.children1[`obj${a + 1}`] = {
         type: 'rule',
         properties: processLeafFields({ ...op })
       }
-      // level 2
     } else {
       obj.children1[`obj${a + 1}`] = {
         type: 'group',
@@ -39,13 +38,13 @@ export const convertNodeLeafToTree = ({ nodeLeafQuery }) => {
         },
         children1: {}
       }
+      // set level 2 children
       op.Operands.forEach((op, b) => {
         if (!op.Operands) {
           obj.children1[`obj${a + 1}`].children1[`obj${a + 1 + b + 1}`] = {
             type: 'rule',
             properties: processLeafFields({ ...op })
           }
-          // level 3
         } else {
           obj.children1[`obj${a + 1}`].children1[`obj${a + 1 + b + 1}`] = {
             type: 'group',
@@ -54,6 +53,7 @@ export const convertNodeLeafToTree = ({ nodeLeafQuery }) => {
             },
             children1: {}
           }
+          // set level 3 children
           op.Operands.forEach((op, c) => {
             if (!op.Operands) {
               obj.children1[`obj${a + 1}`].children1[
@@ -62,8 +62,30 @@ export const convertNodeLeafToTree = ({ nodeLeafQuery }) => {
                 type: 'rule',
                 properties: processLeafFields({ ...op })
               }
-              // level 4
             } else {
+              obj.children1[`obj${a + 1}`].children1[
+                `obj${a + 1 + b + 1}`
+              ].children1[`obj${a + 1 + b + 1 + c + 1}`] = {
+                type: 'group',
+                properties: {
+                  conjunction: op.Operator.toUpperCase()
+                },
+                children1: {}
+              }
+              // set level 4 children
+              op.Operands.forEach((op, d) => {
+                if (!op.Operands) {
+                  obj.children1[`obj${a + 1}`].children1[
+                    `obj${a + 1 + b + 1}`
+                  ].children1[`obj${a + 1 + b + 1 + c + 1}`].children1[
+                    `obj${a + 1 + b + 1 + c + 1 + d + 1}`
+                  ] = {
+                    type: 'rule',
+                    properties: processLeafFields({ ...op })
+                  }
+                } else {
+                }
+              })
             }
           })
         }
@@ -78,7 +100,7 @@ export const convertNodeLeafToTree = ({ nodeLeafQuery }) => {
 
 describe('Process React Awesome Query Builder "Tree" state into "Node Leaf" state', () => {
   test('01 level deep', () => {
-    console.log(convertNodeLeafToTree({ nodeLeafQuery: data['03'].nodeLeaf }))
+    console.log(convertNodeLeafToTree({ nodeLeafQuery: data['04'].nodeLeaf }))
 
     expect(1).toEqual(1)
 
