@@ -1,6 +1,5 @@
-// todo: is_empty, is_not_empty, like, not_like, starts_with, ends_with, proximity
+// todo: is_empty, is_not_empty, like, not_like, starts_with, ends_with
 // both is_empty and is_not_empty do not require a value - should value be present and set to empty string perhaps?
-// proximity has a more complicated API - do we cater for this?
 const _processRuleOperator = ({ operator }) => {
   return operator === 'equal'
     ? '=='
@@ -34,9 +33,7 @@ const _processLeafOperator = ({ Operator }) => {
 }
 
 const _processLeafValue = ({ Value, Operator }) => {
-  return Operator === 'like'
-    ? [`--${Value}--`] // todo: value minus first and last characters
-    : [Value]
+  return Operator === 'like' ? [Value.substring(1, Value.length - 1)] : [Value]
 }
 
 export const processLeafFields = ({ Operator, Attribute, Value }) => ({

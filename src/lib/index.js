@@ -1,6 +1,6 @@
-import { processRuleFields } from './process-fields'
+import { Utils as QbUtils } from 'react-awesome-query-builder'
 
-import data from '../data' // TEMPORARY
+import { processRuleFields, processLeafFields } from './process-fields'
 
 // this is where we process React Awesome Query Builder Tree state into Node Leaf state
 export const convertTreeToNodeLeaf = ({ treeQuery }) => {
@@ -24,7 +24,117 @@ export const convertTreeToNodeLeaf = ({ treeQuery }) => {
   }
 }
 
-export const convertNodeLeafToTree = ({ nodeLeafQuery }) => {
-  // todo: convert nodeLeafQuery into fields and query
-  return { fields: data.fields, query: data['01'].tree }
+// this is where we process Node Leaf state into React Awesome Query Builder Tree state
+export const convertNodeLeafToTree = ({
+  nodeLeafQuery,
+  id = QbUtils.uuid()
+}) => {
+  const query = {
+    id,
+    type: 'group',
+    children1: {}
+  }
+
+  // if an object has Operands, it's a group. Otherwise it's a rule
+  nodeLeafQuery.Operands.forEach((op, a) => {
+    // set level 1 children
+    if (!op.Operands) {
+      query.children1[`obj${a + 1}`] = {
+        type: 'rule',
+        properties: processLeafFields({ ...op })
+      }
+    } else {
+      query.children1[`obj${a + 1}`] = {
+        type: 'group',
+        properties: {
+          conjunction: op.Operator.toUpperCase()
+        },
+        children1: {}
+      }
+      // set level 2 children
+      op.Operands.forEach((op, b) => {
+        if (!op.Operands) {
+          query.children1[`obj${a + 1}`].children1[`obj${a + 1 + b + 1}`] = {
+            type: 'rule',
+            properties: processLeafFields({ ...op })
+          }
+        } else {
+          query.children1[`obj${a + 1}`].children1[`obj${a + 1 + b + 1}`] = {
+            type: 'group',
+            properties: {
+              conjunction: op.Operator.toUpperCase()
+            },
+            children1: {}
+          }
+          // set level 3 children
+          op.Operands.forEach((op, c) => {
+            if (!op.Operands) {
+              query.children1[`obj${a + 1}`].children1[
+                `obj${a + 1 + b + 1}`
+              ].children1[`obj${a + 1 + b + 1 + c + 1}`] = {
+                type: 'rule',
+                properties: processLeafFields({ ...op })
+              }
+            } else {
+              query.children1[`obj${a + 1}`].children1[
+                `obj${a + 1 + b + 1}`
+              ].children1[`obj${a + 1 + b + 1 + c + 1}`] = {
+                type: 'group',
+                properties: {
+                  conjunction: op.Operator.toUpperCase()
+                },
+                children1: {}
+              }
+              // set level 4 children
+              op.Operands.forEach((op, d) => {
+                if (!op.Operands) {
+                  query.children1[`obj${a + 1}`].children1[
+                    `obj${a + 1 + b + 1}`
+                  ].children1[`obj${a + 1 + b + 1 + c + 1}`].children1[
+                    `obj${a + 1 + b + 1 + c + 1 + d + 1}`
+                  ] = {
+                    type: 'rule',
+                    properties: processLeafFields({ ...op })
+                  }
+                } else {
+                  query.children1[`obj${a + 1}`].children1[
+                    `obj${a + 1 + b + 1}`
+                  ].children1[`obj${a + 1 + b + 1 + c + 1}`].children1[
+                    `obj${a + 1 + b + 1 + c + 1 + d + 1}`
+                  ] = {
+                    type: 'group',
+                    properties: {
+                      conjunction: op.Operator.toUpperCase()
+                    },
+                    children1: {}
+                  }
+                  // set level 5 children
+                  op.Operands.forEach((op, e) => {
+                    if (!op.Operands) {
+                      query.children1[`obj${a + 1}`].children1[
+                        `obj${a + 1 + b + 1}`
+                      ].children1[`obj${a + 1 + b + 1 + c + 1}`].children1[
+                        `obj${a + 1 + b + 1 + c + 1 + d + 1}`
+                      ].children1[
+                        `obj${a + 1 + b + 1 + c + 1 + d + 1 + e + 1}`
+                      ] = {
+                        type: 'rule',
+                        properties: processLeafFields({ ...op })
+                      }
+                    } else {
+                      throw new Error('max nesting 5 levels')
+                    }
+                  })
+                }
+              })
+            }
+          })
+        }
+      })
+    }
+  })
+
+  return { query }
+
+  // return { fields: data.fields, query: data['01'].tree }
 }

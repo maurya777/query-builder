@@ -1,6 +1,4 @@
-import { Utils as QbUtils } from 'react-awesome-query-builder'
-
-const data = {
+const getData = ({ id }) => ({
   fields: {
     'ReportDevice.ComputerName': {
       label: 'ReportDevice.ComputerName',
@@ -56,7 +54,7 @@ const data = {
       ]
     },
     tree: {
-      id: QbUtils.uuid(),
+      id,
       type: 'group',
       children1: {
         obj1: {
@@ -114,7 +112,7 @@ const data = {
       ]
     },
     tree: {
-      id: QbUtils.uuid(),
+      id,
       type: 'group',
       children1: {
         obj1: {
@@ -210,7 +208,7 @@ const data = {
       ]
     },
     tree: {
-      id: QbUtils.uuid(),
+      id,
       type: 'group',
       children1: {
         obj1: {
@@ -339,7 +337,7 @@ const data = {
       ]
     },
     tree: {
-      id: QbUtils.uuid(),
+      id,
       type: 'group',
       children1: {
         obj1: {
@@ -506,7 +504,7 @@ const data = {
       ]
     },
     tree: {
-      id: QbUtils.uuid(),
+      id,
       type: 'group',
       children1: {
         obj1: {
@@ -623,7 +621,220 @@ const data = {
         }
       }
     }
+  },
+  '06': {
+    nodeLeaf: {
+      Operator: 'and',
+      Operands: [
+        {
+          Operator: '==',
+          Attribute: 'ReportDevice.ComputerId',
+          Value: 'comp-id-123'
+        },
+        {
+          Operator: 'and',
+          Operands: [
+            {
+              Operator: '==',
+              Attribute: 'ReportDevice.DomainName',
+              Value: 'dom-name'
+            },
+            {
+              Operator: 'like',
+              Attribute: 'ReportDevice.ComputerName',
+              Value: '%comp-name%'
+            },
+            {
+              Operator: 'and',
+              Operands: [
+                {
+                  Operator: '==',
+                  Attribute: 'ReportDevice.DeviceId',
+                  Value: 'dev-id'
+                },
+                {
+                  Operator: '==',
+                  Attribute: 'ReportDevice.DeviceName',
+                  Value: 'dev-name'
+                },
+                {
+                  Operator: 'and',
+                  Operands: [
+                    {
+                      Operator: '==',
+                      Attribute: 'ReportDevice.DomainId',
+                      Value: 'dom-id'
+                    },
+                    {
+                      Operator: '==',
+                      Attribute: 'ReportDevice.DomainNumber',
+                      Value: 'dom-num'
+                    },
+                    {
+                      Operator: 'and',
+                      Operands: [
+                        {
+                          Operator: '==',
+                          Attribute: 'ReportDevice.DeviceNumber',
+                          Value: 'dev-num-999'
+                        },
+                        {
+                          Operator: 'and',
+                          Operands: [
+                            {
+                              Operator: '==',
+                              Attribute: 'ReportDevice.ComputerNumber',
+                              Value: 'comp-num-456'
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    tree: {
+      id,
+      type: 'group',
+      children1: {
+        obj1: {
+          type: 'rule',
+          properties: {
+            field: 'ReportDevice.ComputerId',
+            operator: 'equal',
+            value: ['comp-id-123'],
+            valueSrc: ['value'],
+            valueType: ['text']
+          }
+        },
+        obj2: {
+          type: 'group',
+          properties: {
+            conjunction: 'AND'
+          },
+          children1: {
+            obj3: {
+              type: 'rule',
+              properties: {
+                field: 'ReportDevice.DomainName',
+                operator: 'equal',
+                value: ['dom-name'],
+                valueSrc: ['value'],
+                valueType: ['text']
+              }
+            },
+            obj4: {
+              type: 'rule',
+              properties: {
+                field: 'ReportDevice.ComputerName',
+                operator: 'like',
+                value: ['comp-name'],
+                valueSrc: ['value'],
+                valueType: ['text']
+              }
+            },
+            obj5: {
+              type: 'group',
+              properties: {
+                conjunction: 'AND'
+              },
+              children1: {
+                obj6: {
+                  type: 'rule',
+                  properties: {
+                    field: 'ReportDevice.DeviceId',
+                    operator: 'equal',
+                    value: ['dev-id'],
+                    valueSrc: ['value'],
+                    valueType: ['text']
+                  }
+                },
+                obj7: {
+                  type: 'rule',
+                  properties: {
+                    field: 'ReportDevice.DeviceName',
+                    operator: 'equal',
+                    value: ['dev-name'],
+                    valueSrc: ['value'],
+                    valueType: ['text']
+                  }
+                },
+                obj8: {
+                  type: 'group',
+                  properties: {
+                    conjunction: 'AND'
+                  },
+                  children1: {
+                    obj9: {
+                      type: 'rule',
+                      properties: {
+                        field: 'ReportDevice.DomainId',
+                        operator: 'equal',
+                        value: ['dom-id'],
+                        valueSrc: ['value'],
+                        valueType: ['text']
+                      }
+                    },
+                    obj10: {
+                      type: 'rule',
+                      properties: {
+                        field: 'ReportDevice.DomainNumber',
+                        operator: 'equal',
+                        value: ['dom-num'],
+                        valueSrc: ['value'],
+                        valueType: ['text']
+                      }
+                    },
+                    obj11: {
+                      type: 'group',
+                      properties: {
+                        conjunction: 'AND'
+                      },
+                      children1: {
+                        obj12: {
+                          type: 'rule',
+                          properties: {
+                            field: 'ReportDevice.DeviceNumber',
+                            operator: 'equal',
+                            value: ['dev-num-999'],
+                            valueSrc: ['value'],
+                            valueType: ['text']
+                          }
+                        },
+                        obj13: {
+                          type: 'group',
+                          properties: {
+                            conjunction: 'AND'
+                          },
+                          children1: {
+                            obj14: {
+                              type: 'rule',
+                              properties: {
+                                field: 'ReportDevice.ComputerNumber',
+                                operator: 'equal',
+                                value: ['comp-num-456'],
+                                valueSrc: ['value'],
+                                valueType: ['text']
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
-}
+})
 
-export default data
+export default getData

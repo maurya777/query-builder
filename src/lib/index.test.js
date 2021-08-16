@@ -1,116 +1,43 @@
-const util = require('util')
+import { convertTreeToNodeLeaf, convertNodeLeafToTree } from './'
 
-const log = val =>
-  console.log(util.inspect(val, { showHidden: false, depth: null }))
+import getData from '../data'
+const data = getData({ id: 'id' })
 
-import {
-  convertTreeToNodeLeaf
-  // convertNodeLeafToTree
-} from './'
-
-import { processLeafFields } from './process-fields' // here temprarily
-
-import { Utils as QbUtils } from 'react-awesome-query-builder'
-
-import data from '../data'
-
-// if an object has Operands, it's a group. Otherwise it's a rule
-export const convertNodeLeafToTree = ({ nodeLeafQuery }) => {
-  // todo: convert nodeLeafQuery into fields and query
-  const obj = {
-    id: QbUtils.uuid(),
-    type: 'group',
-    children1: {}
-  }
-
-  nodeLeafQuery.Operands.forEach((op, a) => {
-    // set level 1 children
-    if (!op.Operands) {
-      obj.children1[`obj${a + 1}`] = {
-        type: 'rule',
-        properties: processLeafFields({ ...op })
-      }
-    } else {
-      obj.children1[`obj${a + 1}`] = {
-        type: 'group',
-        properties: {
-          conjunction: op.Operator.toUpperCase()
-        },
-        children1: {}
-      }
-      // set level 2 children
-      op.Operands.forEach((op, b) => {
-        if (!op.Operands) {
-          obj.children1[`obj${a + 1}`].children1[`obj${a + 1 + b + 1}`] = {
-            type: 'rule',
-            properties: processLeafFields({ ...op })
-          }
-        } else {
-          obj.children1[`obj${a + 1}`].children1[`obj${a + 1 + b + 1}`] = {
-            type: 'group',
-            properties: {
-              conjunction: op.Operator.toUpperCase()
-            },
-            children1: {}
-          }
-          // set level 3 children
-          op.Operands.forEach((op, c) => {
-            if (!op.Operands) {
-              obj.children1[`obj${a + 1}`].children1[
-                `obj${a + 1 + b + 1}`
-              ].children1[`obj${a + 1 + b + 1 + c + 1}`] = {
-                type: 'rule',
-                properties: processLeafFields({ ...op })
-              }
-            } else {
-              obj.children1[`obj${a + 1}`].children1[
-                `obj${a + 1 + b + 1}`
-              ].children1[`obj${a + 1 + b + 1 + c + 1}`] = {
-                type: 'group',
-                properties: {
-                  conjunction: op.Operator.toUpperCase()
-                },
-                children1: {}
-              }
-              // set level 4 children
-              op.Operands.forEach((op, d) => {
-                if (!op.Operands) {
-                  obj.children1[`obj${a + 1}`].children1[
-                    `obj${a + 1 + b + 1}`
-                  ].children1[`obj${a + 1 + b + 1 + c + 1}`].children1[
-                    `obj${a + 1 + b + 1 + c + 1 + d + 1}`
-                  ] = {
-                    type: 'rule',
-                    properties: processLeafFields({ ...op })
-                  }
-                } else {
-                }
-              })
-            }
-          })
-        }
-      })
-    }
-  })
-
-  log(obj)
-
-  // return { fields: data.fields, query: data['01'].tree }
-}
-
-describe('Process React Awesome Query Builder "Tree" state into "Node Leaf" state', () => {
+describe('Process "Node Leaf" state into React Awesome Query Builder "Tree" state', () => {
   test('01 level deep', () => {
-    console.log(convertNodeLeafToTree({ nodeLeafQuery: data['04'].nodeLeaf }))
-
-    expect(1).toEqual(1)
-
-    // expect(
-    //   convertNodeLeafToTree({ nodeLeafQuery: data['01'].nodeLeaf })
-    // ).toEqual(data['01'].tree)
+    expect(
+      convertNodeLeafToTree({ id: 'id', nodeLeafQuery: data['01'].nodeLeaf })
+    ).toEqual({ query: data['01'].tree })
+  })
+  test('02 levels deep', () => {
+    expect(
+      convertNodeLeafToTree({ id: 'id', nodeLeafQuery: data['02'].nodeLeaf })
+    ).toEqual({ query: data['02'].tree })
+  })
+  test('03 levels deep', () => {
+    expect(
+      convertNodeLeafToTree({ id: 'id', nodeLeafQuery: data['03'].nodeLeaf })
+    ).toEqual({ query: data['03'].tree })
+  })
+  test('04 levels deep', () => {
+    expect(
+      convertNodeLeafToTree({ id: 'id', nodeLeafQuery: data['04'].nodeLeaf })
+    ).toEqual({ query: data['04'].tree })
+  })
+  test('05 levels deep', () => {
+    expect(
+      convertNodeLeafToTree({ id: 'id', nodeLeafQuery: data['05'].nodeLeaf })
+    ).toEqual({ query: data['05'].tree })
+  })
+  test('Error at 06 levels deep', () => {
+    try {
+      convertNodeLeafToTree({ id: 'id', nodeLeafQuery: data['06'].nodeLeaf })
+    } catch (error) {
+      expect(error.toString()).toEqual('Error: max nesting 5 levels')
+    }
   })
 })
 
-/* * /
 describe('Process React Awesome Query Builder "Tree" state into "Node Leaf" state', () => {
   test('01 level deep', () => {
     expect(convertTreeToNodeLeaf({ treeQuery: data['01'].tree })).toEqual(
@@ -138,4 +65,3 @@ describe('Process React Awesome Query Builder "Tree" state into "Node Leaf" stat
     )
   })
 })
-/* */

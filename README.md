@@ -8,7 +8,8 @@
 - ~~tests w/ Jest for library functions~~
 - ~~demo various outputs~~
 - ~~library: function to convert Tree Query into Node Leaf Query~~
-- library: function to convert Node Leaf Query into Tree Query
+- ~~library: function to convert Node Leaf Query into Tree Query~~
+- library: Node Leaf Query into Tree Query: use recursion to remove 5 nesting limit
 - include custom component
 - generate fields by parsing the NodeLeaf query
 
