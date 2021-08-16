@@ -67,7 +67,13 @@ const QueryBuilder = ({ query, onChange }) => {
           })
         })
       }}
-      renderBuilder={props => <Builder {...props} />}
+      renderBuilder={props => (
+        <div className="query-builder-container">
+          <div className="query-builder qb-lite">
+            <Builder {...props} />
+          </div>
+        </div>
+      )}
     />
   )
 }

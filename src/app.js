@@ -1,4 +1,4 @@
-import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import { withNav } from './with-nav'
 import Demo from './demo'
 import TreeToNodeleaf from './tree-to-nodeleaf'
