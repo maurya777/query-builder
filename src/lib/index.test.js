@@ -8,6 +8,8 @@ import {
   // convertNodeLeafToTree
 } from './'
 
+import { processLeafFields } from './process-fields' // here temprarily
+
 import { Utils as QbUtils } from 'react-awesome-query-builder'
 
 import data from '../data'
@@ -24,13 +26,13 @@ export const convertNodeLeafToTree = ({ nodeLeafQuery }) => {
   nodeLeafQuery.Operands.forEach((op, a) => {
     // level 1
     if (!op.Operands) {
-      obj.children1[`rule0${a + 1}`] = {
+      obj.children1[`obj${a + 1}`] = {
         type: 'rule',
-        properties: op
+        properties: processLeafFields({ ...op })
       }
       // level 2
     } else {
-      obj.children1[`rule0${a + 1}`] = {
+      obj.children1[`obj${a + 1}`] = {
         type: 'group',
         properties: {
           conjunction: op.Operator.toUpperCase()
@@ -39,12 +41,31 @@ export const convertNodeLeafToTree = ({ nodeLeafQuery }) => {
       }
       op.Operands.forEach((op, b) => {
         if (!op.Operands) {
-          obj.children1[`rule0${a + 1}`].children1[`rule0${a + 1 + b + 1}`] = {
+          obj.children1[`obj${a + 1}`].children1[`obj${a + 1 + b + 1}`] = {
             type: 'rule',
-            properties: op
+            properties: processLeafFields({ ...op })
           }
           // level 3
         } else {
+          obj.children1[`obj${a + 1}`].children1[`obj${a + 1 + b + 1}`] = {
+            type: 'group',
+            properties: {
+              conjunction: op.Operator.toUpperCase()
+            },
+            children1: {}
+          }
+          op.Operands.forEach((op, c) => {
+            if (!op.Operands) {
+              obj.children1[`obj${a + 1}`].children1[
+                `obj${a + 1 + b + 1}`
+              ].children1[`obj${a + 1 + b + 1 + c + 1}`] = {
+                type: 'rule',
+                properties: processLeafFields({ ...op })
+              }
+              // level 4
+            } else {
+            }
+          })
         }
       })
     }
@@ -57,7 +78,7 @@ export const convertNodeLeafToTree = ({ nodeLeafQuery }) => {
 
 describe('Process React Awesome Query Builder "Tree" state into "Node Leaf" state', () => {
   test('01 level deep', () => {
-    console.log(convertNodeLeafToTree({ nodeLeafQuery: data['02'].nodeLeaf }))
+    console.log(convertNodeLeafToTree({ nodeLeafQuery: data['03'].nodeLeaf }))
 
     expect(1).toEqual(1)
 

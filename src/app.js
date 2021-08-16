@@ -19,7 +19,7 @@ const App = () => {
           path="/nodeleaf-to-tree"
           component={withNav(NodeleafToTree)}
         />
-        <Redirect to="/tree-to-nodeleaf" />
+        <Redirect to="/tree-to-nodeleaf?level=01" />
       </Switch>
     </Router>
   )

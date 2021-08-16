@@ -10,6 +10,7 @@
 - ~~library: function to convert Tree Query into Node Leaf Query~~
 - library: function to convert Node Leaf Query into Tree Query
 - include custom component
+- generate fields by parsing the NodeLeaf query
 
 **Diagram: Tree Query vs Node Leaf**
 

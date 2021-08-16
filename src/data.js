@@ -59,7 +59,7 @@ const data = {
       id: QbUtils.uuid(),
       type: 'group',
       children1: {
-        rule01: {
+        obj1: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.ComputerName',
@@ -69,7 +69,7 @@ const data = {
             valueType: ['text']
           }
         },
-        rule02: {
+        obj2: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.DomainName',
@@ -117,7 +117,7 @@ const data = {
       id: QbUtils.uuid(),
       type: 'group',
       children1: {
-        rule01: {
+        obj1: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.ComputerId',
@@ -127,7 +127,7 @@ const data = {
             valueType: ['text']
           }
         },
-        rule02: {
+        obj2: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.ComputerName',
@@ -137,13 +137,13 @@ const data = {
             valueType: ['text']
           }
         },
-        rule03: {
+        obj3: {
           type: 'group',
           properties: {
             conjunction: 'AND'
           },
           children1: {
-            rule04: {
+            obj4: {
               type: 'rule',
               properties: {
                 field: 'ReportDevice.DomainName',
@@ -153,7 +153,7 @@ const data = {
                 valueType: ['text']
               }
             },
-            rule05: {
+            obj5: {
               type: 'rule',
               properties: {
                 field: 'ReportDevice.DeviceName',
@@ -213,7 +213,7 @@ const data = {
       id: QbUtils.uuid(),
       type: 'group',
       children1: {
-        rule01: {
+        obj1: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.ComputerId',
@@ -223,7 +223,7 @@ const data = {
             valueType: ['text']
           }
         },
-        rule02: {
+        obj2: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.ComputerName',
@@ -233,13 +233,13 @@ const data = {
             valueType: ['text']
           }
         },
-        rule03: {
+        obj3: {
           type: 'group',
           properties: {
             conjunction: 'AND'
           },
           children1: {
-            rule04: {
+            obj4: {
               type: 'rule',
               properties: {
                 field: 'ReportDevice.DomainName',
@@ -249,13 +249,13 @@ const data = {
                 valueType: ['text']
               }
             },
-            rule05: {
+            obj5: {
               type: 'group',
               properties: {
                 conjunction: 'AND'
               },
               children1: {
-                rule06: {
+                obj6: {
                   type: 'rule',
                   properties: {
                     field: 'ReportDevice.DeviceId',
@@ -265,7 +265,7 @@ const data = {
                     valueType: ['text']
                   }
                 },
-                rule07: {
+                obj7: {
                   type: 'rule',
                   properties: {
                     field: 'ReportDevice.DeviceName',
@@ -342,7 +342,7 @@ const data = {
       id: QbUtils.uuid(),
       type: 'group',
       children1: {
-        rule01: {
+        obj1: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.ComputerId',
@@ -352,13 +352,13 @@ const data = {
             valueType: ['text']
           }
         },
-        rule02: {
+        obj2: {
           type: 'group',
           properties: {
             conjunction: 'AND'
           },
           children1: {
-            rule03: {
+            obj3: {
               type: 'rule',
               properties: {
                 field: 'ReportDevice.DomainName',
@@ -368,7 +368,7 @@ const data = {
                 valueType: ['text']
               }
             },
-            rule04: {
+            obj4: {
               type: 'rule',
               properties: {
                 field: 'ReportDevice.ComputerName',
@@ -378,13 +378,13 @@ const data = {
                 valueType: ['text']
               }
             },
-            rule05: {
+            obj5: {
               type: 'group',
               properties: {
                 conjunction: 'AND'
               },
               children1: {
-                rule06: {
+                obj6: {
                   type: 'rule',
                   properties: {
                     field: 'ReportDevice.DeviceId',
@@ -394,7 +394,7 @@ const data = {
                     valueType: ['text']
                   }
                 },
-                rule07: {
+                obj7: {
                   type: 'rule',
                   properties: {
                     field: 'ReportDevice.DeviceName',
@@ -404,13 +404,13 @@ const data = {
                     valueType: ['text']
                   }
                 },
-                rule08: {
+                obj8: {
                   type: 'group',
                   properties: {
                     conjunction: 'AND'
                   },
                   children1: {
-                    rule09: {
+                    obj9: {
                       type: 'rule',
                       properties: {
                         field: 'ReportDevice.DomainId',
@@ -420,7 +420,7 @@ const data = {
                         valueType: ['text']
                       }
                     },
-                    rule10: {
+                    obj10: {
                       type: 'rule',
                       properties: {
                         field: 'ReportDevice.DomainNumber',
@@ -509,7 +509,7 @@ const data = {
       id: QbUtils.uuid(),
       type: 'group',
       children1: {
-        rule01: {
+        obj1: {
           type: 'rule',
           properties: {
             field: 'ReportDevice.ComputerId',
@@ -519,13 +519,13 @@ const data = {
             valueType: ['text']
           }
         },
-        rule02: {
+        obj2: {
           type: 'group',
           properties: {
             conjunction: 'AND'
           },
           children1: {
-            rule03: {
+            obj3: {
               type: 'rule',
               properties: {
                 field: 'ReportDevice.DomainName',
@@ -535,7 +535,7 @@ const data = {
                 valueType: ['text']
               }
             },
-            rule04: {
+            obj4: {
               type: 'rule',
               properties: {
                 field: 'ReportDevice.ComputerName',
@@ -545,13 +545,13 @@ const data = {
                 valueType: ['text']
               }
             },
-            rule05: {
+            obj5: {
               type: 'group',
               properties: {
                 conjunction: 'AND'
               },
               children1: {
-                rule06: {
+                obj6: {
                   type: 'rule',
                   properties: {
                     field: 'ReportDevice.DeviceId',
@@ -561,7 +561,7 @@ const data = {
                     valueType: ['text']
                   }
                 },
-                rule07: {
+                obj7: {
                   type: 'rule',
                   properties: {
                     field: 'ReportDevice.DeviceName',
@@ -571,13 +571,13 @@ const data = {
                     valueType: ['text']
                   }
                 },
-                rule08: {
+                obj8: {
                   type: 'group',
                   properties: {
                     conjunction: 'AND'
                   },
                   children1: {
-                    rule09: {
+                    obj9: {
                       type: 'rule',
                       properties: {
                         field: 'ReportDevice.DomainId',
@@ -587,7 +587,7 @@ const data = {
                         valueType: ['text']
                       }
                     },
-                    rule10: {
+                    obj10: {
                       type: 'rule',
                       properties: {
                         field: 'ReportDevice.DomainNumber',
@@ -597,13 +597,13 @@ const data = {
                         valueType: ['text']
                       }
                     },
-                    rule11: {
+                    obj11: {
                       type: 'group',
                       properties: {
                         conjunction: 'AND'
                       },
                       children1: {
-                        rule12: {
+                        obj12: {
                           type: 'rule',
                           properties: {
                             field: 'ReportDevice.DeviceNumber',
