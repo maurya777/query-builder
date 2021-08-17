@@ -11,7 +11,28 @@ import AntdConfig from 'react-awesome-query-builder/lib/config/antd'
 import { convertNodeLeafToTree, convertTreeToNodeLeaf } from '../../lib'
 
 const QueryBuilder = ({ fields, query, onChange }) => {
-  const config = { ...AntdConfig, fields }
+  const config = {
+    ...AntdConfig,
+    operators: {
+      equal: {
+        ...AntdConfig.operators.equal,
+        label: 'equal to'
+      },
+      not_equal: {
+        ...AntdConfig.operators.not_equal,
+        label: 'not equal to'
+      },
+      like: {
+        ...AntdConfig.operators.like,
+        label: 'like'
+      },
+      multiselect_equals: {
+        ...AntdConfig.operators.multiselect_equals,
+        label: 'any in'
+      }
+    },
+    fields
+  }
   const _query = convertNodeLeafToTree({
     id: QbUtils.uuid(),
     nodeLeafQuery: query

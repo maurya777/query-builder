@@ -19,7 +19,9 @@ export const convertTreeToNodeLeaf = ({ treeQuery }) => {
       )
 
   return {
-    Operator: 'and',
+    Operator: treeQuery.properties?.conjunction
+      ? treeQuery.properties.conjunction.toLowerCase()
+      : 'and',
     Operands: recurse({ children: treeQuery.children1 })
   }
 }
@@ -33,6 +35,10 @@ export const convertNodeLeafToTree = ({
     id,
     type: 'group',
     children1: {}
+  }
+
+  if (nodeLeafQuery.Operator === 'or') {
+    query.properties = { conjunction: 'OR' }
   }
 
   // if an object has Operands, it's a group. Otherwise it's a rule

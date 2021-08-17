@@ -5,6 +5,8 @@ const _processRuleOperator = ({ operator }) => {
     ? '=='
     : operator === 'not_equal'
     ? '!='
+    : operator === 'multiselect_equals'
+    ? 'In'
     : operator
 }
 
@@ -13,6 +15,8 @@ const _processRuleValue = ({ value, operator }) => {
     ? ''
     : operator === 'like'
     ? `%${value[0]}%`
+    : operator === 'multiselect_equals'
+    ? value.join(', ')
     : value[0]
 }
 
