@@ -12,6 +12,9 @@
 - library: Node Leaf Query into Tree Query: use recursion to remove 5 nesting limit
 - include custom component
 - generate fields by parsing the NodeLeaf query
+- allow other field types (String is text; DeviceTag and SoftwareTag are both multiselect)
+- processFields to have full list of operators (NB should always be mathmatical operators or 'like')
+- BUG: initial AND | OR not set
 
 **Diagram: Tree Query vs Node Leaf**
 
