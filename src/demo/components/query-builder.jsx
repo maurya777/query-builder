@@ -1,4 +1,3 @@
-import React from 'react'
 import { Query, Builder, Utils as QbUtils } from 'react-awesome-query-builder'
 
 import 'antd/dist/antd.css'
@@ -7,6 +6,8 @@ import 'react-awesome-query-builder/lib/css/styles.css'
 import 'react-awesome-query-builder/lib/css/compact_styles.css' //optional, for more compact styles
 
 import AntdConfig from 'react-awesome-query-builder/lib/config/antd'
+import TextWidget from './text-widget'
+import SelectWidget from './select-widget'
 
 import {
   convertMetaToFields,
@@ -33,6 +34,17 @@ const QueryBuilder = ({ meta, values, query, onChange }) => {
       multiselect_equals: {
         ...AntdConfig.operators.multiselect_equals,
         label: 'any in'
+      }
+    },
+    widgets: {
+      ...AntdConfig.widgets,
+      multiselect: {
+        ...AntdConfig.widgets.multiselect,
+        factory: props => <SelectWidget {...props} />
+      },
+      text: {
+        ...AntdConfig.widgets.text,
+        factory: props => <TextWidget {...props} />
       }
     },
     fields: convertMetaToFields({ meta, values })

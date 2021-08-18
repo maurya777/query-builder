@@ -1,5 +1,3 @@
-import React from 'react'
-
 import QueryBuilder from './components/query-builder'
 
 /*
@@ -78,6 +76,69 @@ const App = () => {
           <i>i.e. generated via processing tree query</i>
         </span>
         <xmp id="query">{JSON.stringify({}, null, 4)}</xmp>
+      </div>
+
+      <div
+        className="panel panel--blue"
+        style={{
+          width: '100%',
+          margin: '0'
+        }}
+      >
+        <h3 className="title">Component API Example</h3>
+        <xmp id="query">{`
+          <QueryBuilder
+              meta={[
+                {
+                  DisplayName: 'Device AD Site Name',
+                  Type: 'String',
+                  Attribute: 'ReportDevice.ADSiteName'
+                },
+                {
+                  DisplayName: 'Device Tag Department',
+                  Type: 'DeviceTag',
+                  Attribute: 'DeviceTag.Department'
+                },
+                {
+                  DisplayName: 'Software Tag AdobeProducts',
+                  Type: 'SoftwareTag',
+                  Attribute: 'SoftwareTag.AdobeProducts'
+                }
+              ]}
+              values={[
+                {
+                  Attribute: 'DeviceTag.Department',
+                  Values: ['Biztech', 'Engineering', 'Finance', 'HR']
+                },
+                {
+                  Attribute: 'SoftwareTag.AdobeProducts',
+                  Values: ['Acrobat', 'Illustrator', 'Photoshop']
+                }
+              ]}
+              // NB currently unable to prepopulate select fields w/ values :(
+              query={{
+                Operator: 'and',
+                Operands: [
+                  {
+                    Operator: '==',
+                    Attribute: 'ReportDevice.ADSiteName',
+                    Value: '1E.local'
+                  },
+                  {
+                    Operator: 'In',
+                    Attribute: 'DeviceTag.Department',
+                    Value: 'Biztech,Engineering'
+                  },
+                  {
+                    Operator: 'In',
+                    Attribute: 'SoftwareTag.AdobeProducts',
+                    Value: 'Acrobat,Photoshop'
+                  }
+                ]
+              }}
+              onChange={onChange}
+            />
+        `}</xmp>
       </div>
     </div>
   )
