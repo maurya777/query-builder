@@ -8,9 +8,9 @@ import 'react-awesome-query-builder/lib/css/compact_styles.css' //optional, for 
 
 import AntdConfig from 'react-awesome-query-builder/lib/config/antd'
 
-import { convertNodeLeafToTree } from '../../lib'
+import { convertMetaToFields, convertNodeLeafToTree } from '../../lib'
 
-const QueryBuilder = ({ nodeLeafQuery, onChange }) => {
+const QueryBuilder = ({ meta, nodeLeafQuery, onChange }) => {
   // hide <button>'s containing "Not"
   // useEffect(() => {
   //   document.querySelectorAll('.group--header button').forEach(btn => {
@@ -18,8 +18,8 @@ const QueryBuilder = ({ nodeLeafQuery, onChange }) => {
   //   })
   // }, [])
 
-  const { fields, query } = convertNodeLeafToTree({ nodeLeafQuery })
-  const config = { ...AntdConfig, fields }
+  const query = convertNodeLeafToTree({ nodeLeafQuery })
+  const config = { ...AntdConfig, fields: convertMetaToFields({ meta }) }
 
   return (
     <Query

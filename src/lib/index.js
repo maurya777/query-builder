@@ -2,7 +2,6 @@ import { Utils as QbUtils } from 'react-awesome-query-builder'
 
 import { processRuleFields, processLeafFields } from './process-fields'
 
-// this is where we process React Awesome Query Builder Tree state into Node Leaf state
 export const convertTreeToNodeLeaf = ({ treeQuery }) => {
   const recurse = ({ children }) =>
     Object.entries(children)
@@ -26,7 +25,6 @@ export const convertTreeToNodeLeaf = ({ treeQuery }) => {
   }
 }
 
-// this is where we process Node Leaf state into React Awesome Query Builder Tree state
 export const convertNodeLeafToTree = ({
   nodeLeafQuery,
   id = QbUtils.uuid()
@@ -140,7 +138,54 @@ export const convertNodeLeafToTree = ({
     }
   })
 
-  return { query }
-
-  // return { fields: data.fields, query: data['01'].tree }
+  return query
 }
+
+export const convertMetaToFields = ({ meta }) => {
+  const fields = {}
+
+  meta.forEach(({ DisplayName, Type, Attribute }) => {
+    if (Type === 'String') {
+      fields[Attribute] = {
+        label: DisplayName,
+        type: 'text'
+      }
+    } else if (Type === 'Number') {
+      fields[Attribute] = {
+        label: DisplayName,
+        type: 'number'
+      }
+    } else {
+      fields[Attribute] = {
+        label: DisplayName,
+        type: 'multiselect',
+        valueSources: [''],
+        fieldSettings: {
+          listValues: []
+        }
+      }
+    }
+  })
+  return fields
+}
+
+export const convertFieldsToMeta = ({ fields }) =>
+  Object.entries(fields).map(field => {
+    const Attribute = field[0]
+    const Type =
+      field[1].type === 'text'
+        ? 'String'
+        : Attribute.includes('DeviceTag')
+        ? 'DeviceTag'
+        : Attribute.includes('SoftwareTag')
+        ? 'SoftwareTag'
+        : 'Number'
+        ? 'number'
+        : 'String' // NB defaulting to String
+
+    return {
+      Attribute,
+      Type,
+      DisplayName: field[1].label
+    }
+  })

@@ -25,10 +25,10 @@ const App = () => {
 
   return (
     <div className="app">
-      <QueryBuilder
+      {/* <QueryBuilder
         treeQuery={{ fields: data.fields, query: data[num].tree }}
         onChange={onChange}
-      />
+      /> */}
 
       <div className="panel panel--blue">
         <h3 className="title">Tree Query (Static)</h3>

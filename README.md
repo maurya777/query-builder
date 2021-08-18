@@ -7,14 +7,12 @@
 - ~~create diagram for comparing Tree Query (lib) vs Node Leaf Query~~
 - ~~tests w/ Jest for library functions~~
 - ~~demo various outputs~~
-- ~~library: function to convert Tree Query into Node Leaf Query~~
-- ~~library: function to convert Node Leaf Query into Tree Query~~
-- _nice to have_: library: Node Leaf Query into Tree Query: use recursion to remove 5 nesting limit
+- ~~library: function to convert Tree Query into Node Leaf Query and vice versa~~
+- ~~library: function to convert Meta in Fields and vice versa~~
+- ~~remove excess operators from library, leaving only text, multiselect and number~~
 - include custom component
-- allow other field types (String is text; DeviceTag and SoftwareTag are both multiselect; Number is number)
-- remove excess operators from library
-- processFields to have full list of operators (NB should always be mathmatical operators or 'like')
-- check our multiselect matches ["Color2" functionality](https://ukrbublik.github.io/react-awesome-query-builder/)
+- create dummy API call to retrieve multiselect values
+- _nice to have_: library: Node Leaf Query into Tree Query: use recursion to remove 5 nesting limit
 
 **Diagram: Tree Query vs Node Leaf**
 

@@ -25,7 +25,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <QueryBuilder nodeLeafQuery={data[num].nodeLeaf} onChange={onChange} />
+      {/* <QueryBuilder nodeLeafQuery={data[num].nodeLeaf} onChange={onChange} /> */}
 
       <div className="panel panel--blue">
         <h3 className="title">Node Leaf Query (Static)</h3>

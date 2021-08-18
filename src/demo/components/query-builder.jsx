@@ -8,9 +8,13 @@ import 'react-awesome-query-builder/lib/css/compact_styles.css' //optional, for 
 
 import AntdConfig from 'react-awesome-query-builder/lib/config/antd'
 
-import { convertNodeLeafToTree, convertTreeToNodeLeaf } from '../../lib'
+import {
+  convertMetaToFields,
+  convertNodeLeafToTree,
+  convertTreeToNodeLeaf
+} from '../../lib'
 
-const QueryBuilder = ({ fields, query, onChange }) => {
+const QueryBuilder = ({ meta, query, onChange }) => {
   const config = {
     ...AntdConfig,
     operators: {
@@ -31,8 +35,9 @@ const QueryBuilder = ({ fields, query, onChange }) => {
         label: 'any in'
       }
     },
-    fields
+    fields: convertMetaToFields({ meta })
   }
+
   const _query = convertNodeLeafToTree({
     id: QbUtils.uuid(),
     nodeLeafQuery: query
@@ -41,7 +46,7 @@ const QueryBuilder = ({ fields, query, onChange }) => {
   return (
     <Query
       {...config}
-      value={QbUtils.checkTree(QbUtils.loadTree(_query.query), config)}
+      value={QbUtils.checkTree(QbUtils.loadTree(_query), config)}
       onChange={immutableTree => {
         onChange({
           query: convertTreeToNodeLeaf({

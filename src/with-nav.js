@@ -19,6 +19,7 @@ const Menu = ({ children }) => (
     } 
     `}</style>
     <div className="nav">
+      <NavLink to={'/'}>Full Demo</NavLink>
       <NavLink to={'tree-to-nodeleaf?level=01'}>Tree to Node Leaf</NavLink>
       <NavLink to={'nodeleaf-to-tree?level=01'}>Node Leaf to Tree</NavLink>
       {demos.map(demo => (
