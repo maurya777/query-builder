@@ -190,3 +190,8 @@ export const convertFieldsToMeta = ({ fields }) =>
       DisplayName: field[1].label
     }
   })
+
+export const getValuesFromOperands = ({ Operands = [], name }) => {
+  const arr = Operands.filter(({ Attribute }) => Attribute === name) || []
+  return arr[0]?.Value.split(',') || []
+}

@@ -40,7 +40,8 @@ const App = () => {
             Values: ['Acrobat', 'Illustrator', 'Photoshop']
           }
         ]}
-        // NB currently unable to prepopulate select fields w/ values :(
+        // NB currently unable to prepopulate select fields w/ values usibng AntD out of the box :(
+        // ... but can achieve this with custom widget
         query={{
           Operator: 'and',
           Operands: [
@@ -115,7 +116,8 @@ const App = () => {
                   Values: ['Acrobat', 'Illustrator', 'Photoshop']
                 }
               ]}
-              // NB currently unable to prepopulate select fields w/ values :(
+              // NB currently unable to prepopulate select fields w/ values usibng AntD out of the box :(
+              // ... but can achieve this with custom widget
               query={{
                 Operator: 'and',
                 Operands: [

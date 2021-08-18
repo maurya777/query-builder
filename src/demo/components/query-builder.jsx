@@ -10,6 +10,7 @@ import TextWidget from './text-widget'
 import SelectWidget from './select-widget'
 
 import {
+  getValuesFromOperands,
   convertMetaToFields,
   convertNodeLeafToTree,
   convertTreeToNodeLeaf
@@ -40,7 +41,15 @@ const QueryBuilder = ({ meta, values, query, onChange }) => {
       ...AntdConfig.widgets,
       multiselect: {
         ...AntdConfig.widgets.multiselect,
-        factory: props => <SelectWidget {...props} />
+        factory: props => (
+          <SelectWidget
+            {...props}
+            Values={getValuesFromOperands({
+              Operands: query.Operands,
+              name: props.field
+            })}
+          />
+        )
       },
       text: {
         ...AntdConfig.widgets.text,
