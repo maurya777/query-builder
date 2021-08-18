@@ -2,8 +2,8 @@
 export default {
   text: {
     label: 'Text',
-    type: 'text',
-    tooltip: 'foo'
+    type: 'text'
+    // tooltip: 'foo'
     // mode: 'none' // some, all, none
   },
   number: {
@@ -68,7 +68,7 @@ export default {
       listValues: [
         { value: 'a', title: 'A' },
         { value: 'b', title: 'B' },
-        { value: 'b', title: 'C' }
+        { value: 'c', title: 'C' }
       ]
     }
   },

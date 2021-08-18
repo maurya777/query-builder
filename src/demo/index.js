@@ -32,9 +32,36 @@ const App = () => {
             Attribute: 'SoftwareTag.AdobeProducts'
           }
         ]}
+        values={[
+          {
+            Attribute: 'DeviceTag.Department',
+            Values: ['Biztech', 'Engineering', 'Finance', 'HR']
+          },
+          {
+            Attribute: 'SoftwareTag.AdobeProducts',
+            Values: ['Acrobat', 'Illustrator', 'Photoshop']
+          }
+        ]}
+        // NB currently unable to prepopulate select fields w/ values :(
         query={{
           Operator: 'and',
-          Operands: []
+          Operands: [
+            {
+              Operator: '==',
+              Attribute: 'ReportDevice.ADSiteName',
+              Value: '1E.local'
+            },
+            {
+              Operator: 'In',
+              Attribute: 'DeviceTag.Department',
+              Value: 'Biztech,Engineering'
+            },
+            {
+              Operator: 'In',
+              Attribute: 'SoftwareTag.AdobeProducts',
+              Value: 'Acrobat,Photoshop'
+            }
+          ]
         }}
         onChange={onChange}
       />

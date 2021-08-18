@@ -14,7 +14,7 @@ import {
   convertTreeToNodeLeaf
 } from '../../lib'
 
-const QueryBuilder = ({ meta, query, onChange }) => {
+const QueryBuilder = ({ meta, values, query, onChange }) => {
   const config = {
     ...AntdConfig,
     operators: {
@@ -35,7 +35,7 @@ const QueryBuilder = ({ meta, query, onChange }) => {
         label: 'any in'
       }
     },
-    fields: convertMetaToFields({ meta })
+    fields: convertMetaToFields({ meta, values })
   }
 
   const _query = convertNodeLeafToTree({

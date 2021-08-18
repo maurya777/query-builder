@@ -11,8 +11,9 @@
 - ~~library: function to convert Meta in Fields and vice versa~~
 - ~~remove excess operators from library, leaving only text, multiselect and number~~
 - include custom component
-- create dummy API call to retrieve multiselect values
+- create dummy API call to retrieve multiselect values (example API call pending)
 - _nice to have_: library: Node Leaf Query into Tree Query: use recursion to remove 5 nesting limit
+- BUG: unable to preselect multiselect values
 
 **Diagram: Tree Query vs Node Leaf**
 

@@ -29,7 +29,9 @@ export const processRuleFields = ({ operator, field, value }) => ({
 // ------------------------------------------------------------
 
 const _processLeafOperator = ({ Operator }) => {
-  return Operator === '=='
+  return Operator === 'In'
+    ? 'multiselect_equals'
+    : Operator === '=='
     ? 'equal'
     : Operator === '!='
     ? 'not_equal'
@@ -37,13 +39,25 @@ const _processLeafOperator = ({ Operator }) => {
 }
 
 const _processLeafValue = ({ Value, Operator }) => {
-  return Operator === 'like' ? [Value.substring(1, Value.length - 1)] : [Value]
+  return Operator === 'In'
+    ? [Value.split(',')]
+    : Operator === 'like'
+    ? [Value.substring(1, Value.length - 1)]
+    : [Value]
+}
+
+const _processLeafValueSrc = ({ Operator }) => {
+  return Operator === 'In' ? ['value'] : ['value']
+}
+
+const _processLeafValueType = ({ Operator }) => {
+  return Operator === 'In' ? ['multiselect'] : ['text']
 }
 
 export const processLeafFields = ({ Operator, Attribute, Value }) => ({
   field: Attribute,
   operator: _processLeafOperator({ Operator }),
   value: _processLeafValue({ Value, Operator }),
-  valueSrc: ['value'], // todo
-  valueType: ['text'] // todo
+  valueSrc: _processLeafValueSrc({ Operator }), //['value'], // todo
+  valueType: _processLeafValueType({ Operator }) //['text'] // todo
 })

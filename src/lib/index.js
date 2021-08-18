@@ -141,7 +141,7 @@ export const convertNodeLeafToTree = ({
   return query
 }
 
-export const convertMetaToFields = ({ meta }) => {
+export const convertMetaToFields = ({ meta, values }) => {
   const fields = {}
 
   meta.forEach(({ DisplayName, Type, Attribute }) => {
@@ -156,12 +156,13 @@ export const convertMetaToFields = ({ meta }) => {
         type: 'number'
       }
     } else {
+      const { Values } = values.find(val => val.Attribute === Attribute)
       fields[Attribute] = {
         label: DisplayName,
         type: 'multiselect',
-        valueSources: [''],
+        valueSources: [],
         fieldSettings: {
-          listValues: []
+          listValues: Values
         }
       }
     }
@@ -179,8 +180,8 @@ export const convertFieldsToMeta = ({ fields }) =>
         ? 'DeviceTag'
         : Attribute.includes('SoftwareTag')
         ? 'SoftwareTag'
-        : 'Number'
-        ? 'number'
+        : 'number'
+        ? 'Number'
         : 'String' // NB defaulting to String
 
     return {
