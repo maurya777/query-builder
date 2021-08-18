@@ -2,24 +2,24 @@ import React from 'react'
 
 import { Utils as QbUtils } from 'react-awesome-query-builder'
 
-import QueryBuilder from './components/query-builder'
+// import QueryBuilder from './components/query-builder'
 
 import getData from '../data'
 const data = getData({ id: QbUtils.uuid() })
 
 const App = () => {
-  const onChange = ({ nodeLeafQuery, outputs }) => {
-    document.getElementById('node-leaf-query').innerHTML = JSON.stringify(
-      nodeLeafQuery,
-      null,
-      4
-    )
-    document.getElementById('outputs').innerHTML = JSON.stringify(
-      outputs,
-      null,
-      4
-    )
-  }
+  // const onChange = ({ nodeLeafQuery, outputs }) => {
+  //   document.getElementById('node-leaf-query').innerHTML = JSON.stringify(
+  //     nodeLeafQuery,
+  //     null,
+  //     4
+  //   )
+  //   document.getElementById('outputs').innerHTML = JSON.stringify(
+  //     outputs,
+  //     null,
+  //     4
+  //   )
+  // }
 
   const num = window.location.hash.split('?level=')[1]
 
