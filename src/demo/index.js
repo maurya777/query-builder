@@ -64,14 +64,44 @@ const App = () => {
               Value: '1E.local'
             },
             {
-              Operator: 'In',
-              Attribute: 'DeviceTag.Department',
-              Value: 'Biztech,Engineering'
-            },
-            {
-              Operator: 'In',
-              Attribute: 'SoftwareTag.AdobeProducts',
-              Value: 'Acrobat,Photoshop'
+              Operator: 'and',
+              Operands: [
+                {
+                  Operator: 'In',
+                  Attribute: 'DeviceTag.Department',
+                  Value: 'Biztech'
+                },
+                {
+                  Operator: 'and',
+                  Operands: [
+                    {
+                      Operator: 'In',
+                      Attribute: 'DeviceTag.Department',
+                      Value: 'Engineering'
+                    },
+                    {
+                      Operator: 'and',
+                      Operands: [
+                        {
+                          Operator: 'In',
+                          Attribute: 'DeviceTag.Department',
+                          Value: 'Finance'
+                        },
+                        {
+                          Operator: 'and',
+                          Operands: [
+                            {
+                              Operator: 'In',
+                              Attribute: 'DeviceTag.Department',
+                              Value: 'HR'
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }}
@@ -102,56 +132,76 @@ const App = () => {
         <h3 className="title">Component API Example</h3>
         <xmp id="query">{`
           <QueryBuilder
-              meta={[
+            meta={[
+              {
+                DisplayName: 'Device AD Site Name',
+                Type: 'String',
+                Attribute: 'ReportDevice.ADSiteName'
+              },
+              {
+                DisplayName: 'Device Tag Department',
+                Type: 'DeviceTag',
+                Attribute: 'DeviceTag.Department'
+              },
+              {
+                DisplayName: 'Software Tag AdobeProducts',
+                Type: 'SoftwareTag',
+                Attribute: 'SoftwareTag.AdobeProducts'
+              }
+            ]}
+            values={values}
+            query={{
+              Operator: 'and',
+              Operands: [
                 {
-                  DisplayName: 'Device AD Site Name',
-                  Type: 'String',
-                  Attribute: 'ReportDevice.ADSiteName'
+                  Operator: '==',
+                  Attribute: 'ReportDevice.ADSiteName',
+                  Value: '1E.local'
                 },
                 {
-                  DisplayName: 'Device Tag Department',
-                  Type: 'DeviceTag',
-                  Attribute: 'DeviceTag.Department'
-                },
-                {
-                  DisplayName: 'Software Tag AdobeProducts',
-                  Type: 'SoftwareTag',
-                  Attribute: 'SoftwareTag.AdobeProducts'
+                  Operator: 'and',
+                  Operands: [
+                    {
+                      Operator: 'In',
+                      Attribute: 'DeviceTag.Department',
+                      Value: 'Biztech'
+                    },
+                    {
+                      Operator: 'and',
+                      Operands: [
+                        {
+                          Operator: 'In',
+                          Attribute: 'DeviceTag.Department',
+                          Value: 'Engineering'
+                        },
+                        {
+                          Operator: 'and',
+                          Operands: [
+                            {
+                              Operator: 'In',
+                              Attribute: 'DeviceTag.Department',
+                              Value: 'Finance'
+                            },
+                            {
+                              Operator: 'and',
+                              Operands: [
+                                {
+                                  Operator: 'In',
+                                  Attribute: 'DeviceTag.Department',
+                                  Value: 'HR'
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
-              ]}
-              // NB values below is stateful
-              values={[
-                {
-                  Attribute: 'DeviceTag.Department',
-                  Values: ['Biztech', 'Engineering', 'Finance', 'HR']
-                },
-                {
-                  Attribute: 'SoftwareTag.AdobeProducts',
-                  Values: ['Acrobat', 'Illustrator', 'Photoshop']
-                }
-              ]}
-              query={{
-                Operator: 'and',
-                Operands: [
-                  {
-                    Operator: '==',
-                    Attribute: 'ReportDevice.ADSiteName',
-                    Value: '1E.local'
-                  },
-                  {
-                    Operator: 'In',
-                    Attribute: 'DeviceTag.Department',
-                    Value: 'Biztech,Engineering'
-                  },
-                  {
-                    Operator: 'In',
-                    Attribute: 'SoftwareTag.AdobeProducts',
-                    Value: 'Acrobat,Photoshop'
-                  }
-                ]
-              }}
-              onChange={onChange}
-            />
+              ]
+            }}
+            onChange={onChange}
+          />
         `}</xmp>
       </div>
     </div>

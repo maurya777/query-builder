@@ -2,7 +2,11 @@ import AntdConfig from 'react-awesome-query-builder/lib/config/antd'
 import TextWidget from '../text-widget'
 import SelectWidget from '../select-widget'
 
-import { getSelectedValues, convertMetaToFields } from '../../../lib'
+import {
+  getAllOperands,
+  // getSelectedValues,
+  convertMetaToFields
+} from '../../../lib'
 
 const getConfig = ({ query, meta, values }) => ({
   ...AntdConfig,
@@ -40,18 +44,23 @@ const getConfig = ({ query, meta, values }) => ({
               every time this widget is used it sets selected values
               this is desirable on first load but not when a new query is added
               */
-            selectedValues={getSelectedValues({
-              initValues: true,
-              Operands: query.Operands,
-              name: props.field
+            allOperands={getAllOperands({
+              Operands: query.Operands
             })}
+            // selectedValues={getSelectedValues({
+            //   initValues: true,
+            //   Operands: query.Operands,
+            //   name: props.field
+            // })}
           />
         )
       }
     },
     text: {
       ...AntdConfig.widgets.text,
-      factory: props => <TextWidget {...props} />
+      factory: props => {
+        return <TextWidget {...props} />
+      }
     }
   },
   fields: convertMetaToFields({ meta, values })

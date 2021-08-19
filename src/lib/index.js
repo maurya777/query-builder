@@ -1,5 +1,5 @@
 import { Utils as QbUtils } from 'react-awesome-query-builder'
-
+import { flattenDeep } from 'lodash'
 import { processRuleFields, processLeafFields } from './process-fields'
 
 export const convertTreeToNodeLeaf = ({ treeQuery = {} }) => {
@@ -191,8 +191,16 @@ export const convertFieldsToMeta = ({ fields }) =>
     }
   })
 
-// todo: write test for this below
-export const getSelectedValues = ({ initValues, Operands = [], name }) => {
-  const arr = Operands.filter(({ Attribute }) => Attribute === name) || []
-  return initValues ? arr[0]?.Value.split(',') || [] : []
+export const getAllOperands = ({ Operands }) => {
+  const recurse = (Operands = []) =>
+    Operands.map(op =>
+      op.Attribute && !op.Operands ? op : recurse(op.Operands)
+    )
+  return flattenDeep(recurse(Operands))
 }
+
+// export const getSelectedValues = ({ initValues, Operands = [], name }) => {
+//   const _Operands = getAllOperands({ Operands })
+//   const arr = _Operands.filter(({ Attribute }) => Attribute === name) || []
+//   return initValues ? arr[0]?.Value.split(',') || [] : []
+// }

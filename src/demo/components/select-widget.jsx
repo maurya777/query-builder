@@ -1,8 +1,37 @@
 import { useEffect } from 'react'
 
-const SelectWidget = ({ listValues = [], setValue, selectedValues = [] }) => {
+let flags = undefined
+
+// todo: first, set all flags via allOperands (if not done)
+//
+const SelectWidget = ({
+  listValues = [],
+  setValue,
+  value,
+  allOperands,
+  field
+}) => {
+  const hack = () => {
+    if (!flags) {
+      flags = {}
+      allOperands.forEach(({ Attribute }) => {
+        flags[Attribute] = { count: 0 }
+      })
+    }
+
+    const arr = allOperands.filter(({ Attribute }) => Attribute === field)
+    const val = arr[flags[field].count]?.Value.split(',') || []
+
+    flags[field].count = flags[field].count + 1
+    flags[field].val = val
+
+    console.log(allOperands)
+
+    setValue(val)
+  }
+
   useEffect(() => {
-    setValue(selectedValues)
+    hack()
     // eslint-disable-next-line
   }, [])
 
@@ -10,7 +39,7 @@ const SelectWidget = ({ listValues = [], setValue, selectedValues = [] }) => {
     <select
       className="SelectWidget"
       multiple
-      defaultValue={selectedValues}
+      value={value}
       onChange={e => {
         const arr = Array.apply(null, e.target.options)
           .filter(opt => opt.selected)
