@@ -2,8 +2,6 @@ import { useEffect } from 'react'
 
 let flags = undefined
 
-// todo: first, set all flags via allOperands (if not done)
-//
 const SelectWidget = ({
   listValues = [],
   setValue,
@@ -24,8 +22,6 @@ const SelectWidget = ({
 
     flags[field].count = flags[field].count + 1
     flags[field].val = val
-
-    console.log(allOperands)
 
     setValue(val)
   }

@@ -198,9 +198,3 @@ export const getAllOperands = ({ Operands }) => {
     )
   return flattenDeep(recurse(Operands))
 }
-
-// export const getSelectedValues = ({ initValues, Operands = [], name }) => {
-//   const _Operands = getAllOperands({ Operands })
-//   const arr = _Operands.filter(({ Attribute }) => Attribute === name) || []
-//   return initValues ? arr[0]?.Value.split(',') || [] : []
-// }

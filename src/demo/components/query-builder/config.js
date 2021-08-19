@@ -2,11 +2,7 @@ import AntdConfig from 'react-awesome-query-builder/lib/config/antd'
 import TextWidget from '../text-widget'
 import SelectWidget from '../select-widget'
 
-import {
-  getAllOperands,
-  // getSelectedValues,
-  convertMetaToFields
-} from '../../../lib'
+import { getAllOperands, convertMetaToFields } from '../../../lib'
 
 const getConfig = ({ query, meta, values }) => ({
   ...AntdConfig,
@@ -28,39 +24,26 @@ const getConfig = ({ query, meta, values }) => ({
       label: 'any in'
     }
   },
-  // NB currently unable to prepopulate select fields w/ values usibng AntD out of the box :(
-  // ... but can achieve this with custom widget
-  // without widgets object RAQB will default back to using Ant Design components
+  // NB currently unable to prepopulate multiselect fields w/ values
   widgets: {
     ...AntdConfig.widgets,
     multiselect: {
       ...AntdConfig.widgets.multiselect,
-      factory: props => {
-        return (
-          <SelectWidget
-            {...props}
-            /*
-              bug:
-              every time this widget is used it sets selected values
-              this is desirable on first load but not when a new query is added
-              */
-            allOperands={getAllOperands({
-              Operands: query.Operands
-            })}
-            // selectedValues={getSelectedValues({
-            //   initValues: true,
-            //   Operands: query.Operands,
-            //   name: props.field
-            // })}
-          />
-        )
-      }
+      factory: props => (
+        <SelectWidget
+          {...props}
+          // factory props should contain everything the component needs
+          // it contains listValues (i.e. all the options)
+          // it does not contain value / defaultValue (i.e. preselected options)
+          allOperands={getAllOperands({
+            Operands: query.Operands
+          })}
+        />
+      )
     },
     text: {
       ...AntdConfig.widgets.text,
-      factory: props => {
-        return <TextWidget {...props} />
-      }
+      factory: props => <TextWidget {...props} />
     }
   },
   fields: convertMetaToFields({ meta, values })

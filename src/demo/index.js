@@ -11,12 +11,31 @@ const SPOOFAPI = ({ ms = 1000, error = '' } = {}) =>
   })
 
 const App = () => {
+  const [loading, setLoading] = useState(true)
+  const [meta, setMeta] = useState([])
   const [values, setValues] = useState([])
+  const [query, setQuery] = useState({})
 
   useEffect(() => {
-    // NB we could either make the call here and pass in values
-    // ...or pass in an endpoint to call
     SPOOFAPI().then(() => {
+      setMeta([
+        {
+          DisplayName: 'Device AD Site Name',
+          Type: 'String',
+          Attribute: 'ReportDevice.ADSiteName'
+        },
+        {
+          DisplayName: 'Device Tag Department',
+          Type: 'DeviceTag',
+          Attribute: 'DeviceTag.Department'
+        },
+        {
+          DisplayName: 'Software Tag AdobeProducts',
+          Type: 'SoftwareTag',
+          Attribute: 'SoftwareTag.AdobeProducts'
+        }
+      ])
+
       setValues([
         {
           Attribute: 'DeviceTag.Department',
@@ -27,6 +46,58 @@ const App = () => {
           Values: ['Acrobat', 'Illustrator', 'Photoshop']
         }
       ])
+
+      setQuery({
+        Operator: 'and',
+        Operands: [
+          {
+            Operator: '==',
+            Attribute: 'ReportDevice.ADSiteName',
+            Value: '1E.local'
+          },
+          {
+            Operator: 'and',
+            Operands: [
+              {
+                Operator: 'In',
+                Attribute: 'DeviceTag.Department',
+                Value: 'Biztech'
+              },
+              {
+                Operator: 'and',
+                Operands: [
+                  {
+                    Operator: 'In',
+                    Attribute: 'DeviceTag.Department',
+                    Value: 'Engineering'
+                  },
+                  {
+                    Operator: 'and',
+                    Operands: [
+                      {
+                        Operator: 'In',
+                        Attribute: 'DeviceTag.Department',
+                        Value: 'Engineering,Finance'
+                      },
+                      {
+                        Operator: 'and',
+                        Operands: [
+                          {
+                            Operator: 'In',
+                            Attribute: 'DeviceTag.Department',
+                            Value: 'HR'
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      })
+      setLoading(false)
     })
   }, [])
 
@@ -36,77 +107,16 @@ const App = () => {
 
   return (
     <div className="app">
-      <QueryBuilder
-        meta={[
-          {
-            DisplayName: 'Device AD Site Name',
-            Type: 'String',
-            Attribute: 'ReportDevice.ADSiteName'
-          },
-          {
-            DisplayName: 'Device Tag Department',
-            Type: 'DeviceTag',
-            Attribute: 'DeviceTag.Department'
-          },
-          {
-            DisplayName: 'Software Tag AdobeProducts',
-            Type: 'SoftwareTag',
-            Attribute: 'SoftwareTag.AdobeProducts'
-          }
-        ]}
-        values={values}
-        query={{
-          Operator: 'and',
-          Operands: [
-            {
-              Operator: '==',
-              Attribute: 'ReportDevice.ADSiteName',
-              Value: '1E.local'
-            },
-            {
-              Operator: 'and',
-              Operands: [
-                {
-                  Operator: 'In',
-                  Attribute: 'DeviceTag.Department',
-                  Value: 'Biztech'
-                },
-                {
-                  Operator: 'and',
-                  Operands: [
-                    {
-                      Operator: 'In',
-                      Attribute: 'DeviceTag.Department',
-                      Value: 'Engineering'
-                    },
-                    {
-                      Operator: 'and',
-                      Operands: [
-                        {
-                          Operator: 'In',
-                          Attribute: 'DeviceTag.Department',
-                          Value: 'Finance'
-                        },
-                        {
-                          Operator: 'and',
-                          Operands: [
-                            {
-                              Operator: 'In',
-                              Attribute: 'DeviceTag.Department',
-                              Value: 'HR'
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }}
-        onChange={onChange}
-      />
+      {loading ? (
+        <p>LOADING</p>
+      ) : (
+        <QueryBuilder
+          meta={meta}
+          values={values}
+          query={query}
+          onChange={onChange}
+        />
+      )}
 
       <div
         className="panel panel--red"
@@ -128,82 +138,7 @@ const App = () => {
           width: '100%',
           margin: '0'
         }}
-      >
-        <h3 className="title">Component API Example</h3>
-        <xmp id="query">{`
-          <QueryBuilder
-            meta={[
-              {
-                DisplayName: 'Device AD Site Name',
-                Type: 'String',
-                Attribute: 'ReportDevice.ADSiteName'
-              },
-              {
-                DisplayName: 'Device Tag Department',
-                Type: 'DeviceTag',
-                Attribute: 'DeviceTag.Department'
-              },
-              {
-                DisplayName: 'Software Tag AdobeProducts',
-                Type: 'SoftwareTag',
-                Attribute: 'SoftwareTag.AdobeProducts'
-              }
-            ]}
-            values={values}
-            query={{
-              Operator: 'and',
-              Operands: [
-                {
-                  Operator: '==',
-                  Attribute: 'ReportDevice.ADSiteName',
-                  Value: '1E.local'
-                },
-                {
-                  Operator: 'and',
-                  Operands: [
-                    {
-                      Operator: 'In',
-                      Attribute: 'DeviceTag.Department',
-                      Value: 'Biztech'
-                    },
-                    {
-                      Operator: 'and',
-                      Operands: [
-                        {
-                          Operator: 'In',
-                          Attribute: 'DeviceTag.Department',
-                          Value: 'Engineering'
-                        },
-                        {
-                          Operator: 'and',
-                          Operands: [
-                            {
-                              Operator: 'In',
-                              Attribute: 'DeviceTag.Department',
-                              Value: 'Finance'
-                            },
-                            {
-                              Operator: 'and',
-                              Operands: [
-                                {
-                                  Operator: 'In',
-                                  Attribute: 'DeviceTag.Department',
-                                  Value: 'HR'
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }}
-            onChange={onChange}
-          />
-        `}</xmp>
-      </div>
+      ></div>
     </div>
   )
 }
