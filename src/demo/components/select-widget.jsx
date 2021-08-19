@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 
-const SelectWidget = ({ listValues = [], setValue, Values = [] }) => {
+const SelectWidget = ({ listValues = [], setValue, selectedValues = [] }) => {
   useEffect(() => {
-    setValue(Values)
+    setValue(selectedValues)
     // eslint-disable-next-line
   }, [])
 
@@ -10,7 +10,7 @@ const SelectWidget = ({ listValues = [], setValue, Values = [] }) => {
     <select
       className="SelectWidget"
       multiple
-      defaultValue={Values}
+      defaultValue={selectedValues}
       onChange={e => {
         const arr = Array.apply(null, e.target.options)
           .filter(opt => opt.selected)

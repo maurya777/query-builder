@@ -10,7 +10,7 @@ import TextWidget from './text-widget'
 import SelectWidget from './select-widget'
 
 import {
-  getValuesFromOperands,
+  getSelectedValues,
   convertMetaToFields,
   convertNodeLeafToTree,
   convertTreeToNodeLeaf
@@ -37,20 +37,30 @@ const QueryBuilder = ({ meta = [], values = [], query = {}, onChange }) => {
         label: 'any in'
       }
     },
-    // NB without widget object RAQB will default back to using Ant Design components
+    // NB currently unable to prepopulate select fields w/ values usibng AntD out of the box :(
+    // ... but can achieve this with custom widget
+    // without widgets object RAQB will default back to using Ant Design components
     widgets: {
       ...AntdConfig.widgets,
       multiselect: {
         ...AntdConfig.widgets.multiselect,
-        factory: props => (
-          <SelectWidget
-            {...props}
-            Values={getValuesFromOperands({
-              Operands: query.Operands,
-              name: props.field
-            })}
-          />
-        )
+        factory: props => {
+          return (
+            <SelectWidget
+              {...props}
+              /*
+              bug:
+              every time this widget is used it sets selected values
+              this is desirable on first load but not when a new query is added 
+              */
+              selectedValues={getSelectedValues({
+                initValues: true,
+                Operands: query.Operands,
+                name: props.field
+              })}
+            />
+          )
+        }
       },
       text: {
         ...AntdConfig.widgets.text,

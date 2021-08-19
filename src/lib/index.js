@@ -191,7 +191,8 @@ export const convertFieldsToMeta = ({ fields }) =>
     }
   })
 
-export const getValuesFromOperands = ({ Operands = [], name }) => {
+// todo: write test for this below
+export const getSelectedValues = ({ initValues, Operands = [], name }) => {
   const arr = Operands.filter(({ Attribute }) => Attribute === name) || []
-  return arr[0]?.Value.split(',') || []
+  return initValues ? arr[0]?.Value.split(',') || [] : []
 }

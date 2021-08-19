@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react'
 import QueryBuilder from './components/query-builder'
 
-/*
-When user will select DeviceTag or Software Tag from list, then UI need to call
-separate API to fetch values for given Tag Key.
-*/
-
 const SPOOFAPI = ({ ms = 1000, error = '' } = {}) =>
   new Promise((resolve, reject) => {
     if (error) {
@@ -60,8 +55,6 @@ const App = () => {
           }
         ]}
         values={values}
-        // NB currently unable to prepopulate select fields w/ values usibng AntD out of the box :(
-        // ... but can achieve this with custom widget
         query={{
           Operator: 'and',
           Operands: [
@@ -126,6 +119,7 @@ const App = () => {
                   Attribute: 'SoftwareTag.AdobeProducts'
                 }
               ]}
+              // NB values below is stateful
               values={[
                 {
                   Attribute: 'DeviceTag.Department',
@@ -136,8 +130,6 @@ const App = () => {
                   Values: ['Acrobat', 'Illustrator', 'Photoshop']
                 }
               ]}
-              // NB currently unable to prepopulate select fields w/ values usibng AntD out of the box :(
-              // ... but can achieve this with custom widget
               query={{
                 Operator: 'and',
                 Operands: [
