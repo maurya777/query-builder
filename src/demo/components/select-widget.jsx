@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const SelectWidget = ({ listValues, setValue, Values, field }) => {
+const SelectWidget = ({ listValues = [], setValue, Values = [] }) => {
   useEffect(() => {
     setValue(Values)
     // eslint-disable-next-line

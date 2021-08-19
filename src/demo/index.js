@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import QueryBuilder from './components/query-builder'
 
 /*
@@ -5,7 +6,35 @@ When user will select DeviceTag or Software Tag from list, then UI need to call
 separate API to fetch values for given Tag Key.
 */
 
+const SPOOFAPI = ({ ms = 1000, error = '' } = {}) =>
+  new Promise((resolve, reject) => {
+    if (error) {
+      reject()
+    } else {
+      setTimeout(resolve, ms)
+    }
+  })
+
 const App = () => {
+  const [values, setValues] = useState([])
+
+  useEffect(() => {
+    // NB we could either make the call here and pass in values
+    // ...or pass in an endpoint to call
+    SPOOFAPI().then(() => {
+      setValues([
+        {
+          Attribute: 'DeviceTag.Department',
+          Values: ['Biztech', 'Engineering', 'Finance', 'HR']
+        },
+        {
+          Attribute: 'SoftwareTag.AdobeProducts',
+          Values: ['Acrobat', 'Illustrator', 'Photoshop']
+        }
+      ])
+    })
+  }, [])
+
   const onChange = ({ query }) => {
     document.getElementById('query').innerHTML = JSON.stringify(query, null, 4)
   }
@@ -30,16 +59,7 @@ const App = () => {
             Attribute: 'SoftwareTag.AdobeProducts'
           }
         ]}
-        values={[
-          {
-            Attribute: 'DeviceTag.Department',
-            Values: ['Biztech', 'Engineering', 'Finance', 'HR']
-          },
-          {
-            Attribute: 'SoftwareTag.AdobeProducts',
-            Values: ['Acrobat', 'Illustrator', 'Photoshop']
-          }
-        ]}
+        values={values}
         // NB currently unable to prepopulate select fields w/ values usibng AntD out of the box :(
         // ... but can achieve this with custom widget
         query={{

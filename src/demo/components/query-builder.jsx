@@ -16,7 +16,7 @@ import {
   convertTreeToNodeLeaf
 } from '../../lib'
 
-const QueryBuilder = ({ meta, values, query, onChange }) => {
+const QueryBuilder = ({ meta = [], values = [], query = {}, onChange }) => {
   const config = {
     ...AntdConfig,
     operators: {
@@ -37,6 +37,7 @@ const QueryBuilder = ({ meta, values, query, onChange }) => {
         label: 'any in'
       }
     },
+    // NB without widget object RAQB will default back to using Ant Design components
     widgets: {
       ...AntdConfig.widgets,
       multiselect: {

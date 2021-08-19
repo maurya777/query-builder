@@ -58,6 +58,6 @@ export const processLeafFields = ({ Operator, Attribute, Value }) => ({
   field: Attribute,
   operator: _processLeafOperator({ Operator }),
   value: _processLeafValue({ Value, Operator }),
-  valueSrc: _processLeafValueSrc({ Operator }), //['value'], // todo
-  valueType: _processLeafValueType({ Operator }) //['text'] // todo
+  valueSrc: _processLeafValueSrc({ Operator }),
+  valueType: _processLeafValueType({ Operator })
 })

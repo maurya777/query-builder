@@ -2,7 +2,7 @@ import { Utils as QbUtils } from 'react-awesome-query-builder'
 
 import { processRuleFields, processLeafFields } from './process-fields'
 
-export const convertTreeToNodeLeaf = ({ treeQuery }) => {
+export const convertTreeToNodeLeaf = ({ treeQuery = {} }) => {
   const recurse = ({ children }) =>
     Object.entries(children)
       .map(val => val[1])
@@ -26,7 +26,7 @@ export const convertTreeToNodeLeaf = ({ treeQuery }) => {
 }
 
 export const convertNodeLeafToTree = ({
-  nodeLeafQuery,
+  nodeLeafQuery = {},
   id = QbUtils.uuid()
 }) => {
   const query = {
@@ -156,7 +156,7 @@ export const convertMetaToFields = ({ meta, values }) => {
         type: 'number'
       }
     } else {
-      const { Values } = values.find(val => val.Attribute === Attribute)
+      const { Values } = values.find(val => val.Attribute === Attribute) || []
       fields[Attribute] = {
         label: DisplayName,
         type: 'multiselect',
