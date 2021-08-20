@@ -8,9 +8,9 @@ import 'react-awesome-query-builder/lib/css/compact_styles.css' //optional, for 
 
 import AntdConfig from 'react-awesome-query-builder/lib/config/antd'
 
-import { convertTreeToNodeLeaf } from '../../lib'
+import { convertMetaToFields, convertNodeLeafToTree } from '../../lib/meta'
 
-const QueryBuilder = ({ treeQuery, onChange }) => {
+const QueryBuilder = ({ meta, nodeLeafQuery, onChange }) => {
   // hide <button>'s containing "Not"
   // useEffect(() => {
   //   document.querySelectorAll('.group--header button').forEach(btn => {
@@ -18,18 +18,17 @@ const QueryBuilder = ({ treeQuery, onChange }) => {
   //   })
   // }, [])
 
-  const config = { ...AntdConfig, fields: treeQuery.fields }
+  const query = convertNodeLeafToTree({ nodeLeafQuery })
+  const config = { ...AntdConfig, fields: convertMetaToFields({ meta }) }
 
   return (
     <Query
       {...config}
-      value={QbUtils.checkTree(QbUtils.loadTree(treeQuery.query), config)}
+      value={QbUtils.checkTree(QbUtils.loadTree(query), config)}
       onChange={(immutableTree, config) => {
         // Tip: for better performance you can apply `throttle` - see `examples/demo`
         onChange({
-          nodeLeafQuery: convertTreeToNodeLeaf({
-            treeQuery: QbUtils.getTree(immutableTree)
-          }),
+          treeQuery: query,
           outputs: {
             queryString: QbUtils.queryString(immutableTree, config),
             sqlFormat: QbUtils.sqlFormat(immutableTree, config),

@@ -1,9 +1,6 @@
-import {
-  convertMetaToFields,
-  convertFieldsToMeta,
-  convertTreeToNodeLeaf,
-  convertNodeLeafToTree
-} from './'
+import { convertTreeToNodeLeaf, convertNodeLeafToTree } from './query'
+
+import { convertMetaToFields, convertFieldsToMeta } from './meta'
 
 import getData, { metaFields } from '../data'
 const data = getData()

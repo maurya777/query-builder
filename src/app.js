@@ -1,8 +1,5 @@
-import { HashRouter as Router, Switch, Route } from 'react-router-dom'
-import { withNav } from './with-nav'
+import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import Demo from './demo'
-import TreeToNodeleaf from './tree-to-nodeleaf'
-import NodeleafToTree from './nodeleaf-to-tree'
 
 import './style.css'
 
@@ -11,16 +8,7 @@ const App = () => {
     <Router>
       <Switch>
         <Route exact path="/" component={Demo} />
-        <Route
-          exact
-          path="/tree-to-nodeleaf"
-          component={withNav(TreeToNodeleaf)}
-        />
-        <Route
-          exact
-          path="/nodeleaf-to-tree"
-          component={withNav(NodeleafToTree)}
-        />
+        <Redirect to="/" />
       </Switch>
     </Router>
   )

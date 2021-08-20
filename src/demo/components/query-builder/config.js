@@ -1,6 +1,6 @@
 import AntdConfig from 'react-awesome-query-builder/lib/config/antd'
 
-import { convertMetaToFields } from '../../../lib'
+import { convertMetaToFields } from '../../../lib/meta'
 
 const getConfig = ({ query, meta, values }) => ({
   ...AntdConfig,

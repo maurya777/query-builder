@@ -7,7 +7,10 @@ import 'react-awesome-query-builder/lib/css/compact_styles.css' //optional, for 
 
 import getConfig from './config'
 
-import { convertNodeLeafToTree, convertTreeToNodeLeaf } from '../../../lib'
+import {
+  convertNodeLeafToTree,
+  convertTreeToNodeLeaf
+} from '../../../lib/query'
 
 const QueryBuilder = ({ meta = [], values = [], query = {}, onChange }) => {
   const config = getConfig({ query, meta, values })
