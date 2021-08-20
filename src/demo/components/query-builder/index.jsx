@@ -14,20 +14,28 @@ import {
   convertTreeToNodeLeaf
 } from '../../../lib/query'
 
-const QueryBuilder = ({ meta = [], values = [], query = {}, onChange }) => {
-  const _values = convertPayloadToValues({ meta, payload: values })
+const QueryBuilder = ({
+  metaPayload = [],
+  valuesPayload = [],
+  queryPayload = {},
+  onChange
+}) => {
+  const values = convertPayloadToValues({
+    meta: metaPayload,
+    payload: valuesPayload
+  })
 
-  const config = getConfig({ query, meta, values: _values })
+  const config = getConfig({ meta: metaPayload, values })
 
-  const _query = convertNodeLeafToTree({
+  const query = convertNodeLeafToTree({
     id: QbUtils.uuid(),
-    nodeLeafQuery: query
+    nodeLeafQuery: queryPayload
   })
 
   return (
     <Query
       {...config}
-      value={QbUtils.checkTree(QbUtils.loadTree(_query), config)}
+      value={QbUtils.checkTree(QbUtils.loadTree(query), config)}
       onChange={immutableTree => {
         onChange({
           query: convertTreeToNodeLeaf({

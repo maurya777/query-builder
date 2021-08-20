@@ -12,13 +12,13 @@ const SPOOFAPI = ({ ms = 1000, error = '' } = {}) =>
 
 const App = () => {
   const [loading, setLoading] = useState(true)
-  const [meta, setMeta] = useState([])
-  const [values, setValues] = useState([])
-  const [query, setQuery] = useState({})
+  const [metaPayload, setMetaPayload] = useState([])
+  const [valuesPayload, setValuesPayload] = useState([])
+  const [queryPayload, setQueryPayload] = useState({})
 
   useEffect(() => {
     SPOOFAPI().then(() => {
-      setMeta([
+      setMetaPayload([
         {
           Id: 1,
           DisplayName: 'Device AD Site Name',
@@ -39,7 +39,7 @@ const App = () => {
         }
       ])
 
-      setValues([
+      setValuesPayload([
         {
           Id: 98,
           Name: 'Adobe Products',
@@ -66,7 +66,7 @@ const App = () => {
         }
       ])
 
-      setQuery({
+      setQueryPayload({
         Operator: 'and',
         Operands: [
           {
@@ -130,9 +130,9 @@ const App = () => {
         <p>LOADING</p>
       ) : (
         <QueryBuilder
-          meta={meta}
-          values={values}
-          query={query}
+          metaPayload={metaPayload}
+          valuesPayload={valuesPayload}
+          queryPayload={queryPayload}
           onChange={onChange}
         />
       )}
