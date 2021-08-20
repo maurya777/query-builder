@@ -68,24 +68,24 @@ const App = () => {
                 Operands: [
                   {
                     Operator: 'In',
-                    Attribute: 'DeviceTag.Department',
-                    Value: 'Engineering'
+                    Attribute: 'SoftwareTag.AdobeProducts',
+                    Value: 'Acrobat'
                   },
                   {
                     Operator: 'and',
                     Operands: [
                       {
                         Operator: 'In',
-                        Attribute: 'DeviceTag.Department',
-                        Value: 'Engineering,Finance'
+                        Attribute: 'SoftwareTag.AdobeProducts',
+                        Value: 'Illustrator,Photoshop'
                       },
                       {
                         Operator: 'and',
                         Operands: [
                           {
-                            Operator: 'In',
-                            Attribute: 'DeviceTag.Department',
-                            Value: 'HR'
+                            Operator: 'like',
+                            Attribute: 'ReportDevice.ADSiteName',
+                            Value: '%1E.local%'
                           }
                         ]
                       }
