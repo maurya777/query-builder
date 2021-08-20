@@ -4,8 +4,8 @@ import { Utils as QbUtils } from 'react-awesome-query-builder'
 
 // import QueryBuilder from './components/query-builder'
 
-import getData from '../data'
-const data = getData({ id: QbUtils.uuid() })
+import { getQueries } from '../data'
+const data = getQueries({ id: QbUtils.uuid() })
 
 const App = () => {
   // const onChange = ({ treeQuery, outputs }) => {

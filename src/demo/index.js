@@ -38,11 +38,11 @@ const App = () => {
 
       setValues([
         {
-          Attribute: 'DeviceTag.Department',
+          Name: 'DeviceTag.Department',
           Values: ['Biztech', 'Engineering', 'Finance', 'HR']
         },
         {
-          Attribute: 'SoftwareTag.AdobeProducts',
+          Name: 'SoftwareTag.AdobeProducts',
           Values: ['Acrobat', 'Illustrator', 'Photoshop']
         }
       ])

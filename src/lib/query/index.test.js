@@ -1,22 +1,7 @@
-import { convertTreeToNodeLeaf, convertNodeLeafToTree } from './query'
+import { convertTreeToNodeLeaf, convertNodeLeafToTree } from '../query'
 
-import { convertMetaToFields, convertFieldsToMeta } from './meta'
-
-import getData, { metaFields } from '../data'
-const data = getData()
-
-describe('Convert "Meta" array into "fields" for React Awesome Query Builder', () => {
-  test('Convert meta to fields', () => {
-    expect(convertMetaToFields({ meta: metaFields.meta })).toEqual(
-      metaFields.fields
-    )
-  })
-  test('Convert fields to meta', () => {
-    expect(convertFieldsToMeta({ fields: metaFields.fields })).toEqual(
-      metaFields.meta
-    )
-  })
-})
+import { getQueries } from '../../data'
+const data = getQueries()
 
 describe('Convert "Node Leaf" state into React Awesome Query Builder "Tree" state', () => {
   test('01 level deep', () => {

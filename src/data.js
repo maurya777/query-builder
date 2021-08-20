@@ -1,4 +1,75 @@
-export const metaFields = {
+export const values = {
+  payload: [
+    {
+      Id: 1,
+      Name: 'BusinessUnit',
+      TypeId: 123,
+      TypeName: 'SoftwareTag',
+      Values: [
+        { Id: 21, Value: 'Finance', PropertyId: 7 },
+        { Id: 20, Value: 'HR', PropertyId: 7 }
+      ]
+    },
+    {
+      Id: 4,
+      Name: 'CMMC',
+      TypeId: 234,
+      TypeName: 'DeviceTag',
+      Values: [{ Id: 11, Value: 'AC 2 removable storage - USB', PropertyId: 4 }]
+    },
+    {
+      Id: 98,
+      Name: 'Department',
+      TypeId: 1,
+      TypeName: 'SoftwareTag',
+      Values: [
+        { Id: 4, Value: 'Facilities', PropertyId: 1 },
+        { Id: 1, Value: 'Finance', PropertyId: 1 },
+        { Id: 2, Value: 'HR', PropertyId: 1 },
+        { Id: 3, Value: 'IT', PropertyId: 1 }
+      ]
+    },
+    {
+      Id: 23,
+      Name: 'DeploymentGroups',
+      TypeId: 1,
+      TypeName: 'DeviceTag',
+      Values: [
+        { Id: 5, Value: 'Group 1 (Test devices)', PropertyId: 2 },
+        { Id: 6, Value: 'Group 2 (IT Pilot devices)', PropertyId: 2 },
+        { Id: 7, Value: 'Group 3 (Pilot devices)', PropertyId: 2 },
+        { Id: 8, Value: 'Group 4 (non critical devices)', PropertyId: 2 },
+        { Id: 9, Value: 'Group 5 (critical devices)', PropertyId: 2 }
+      ]
+    }
+  ],
+  values: [
+    {
+      Name: 'CMMC',
+      Values: ['AC 2 removable storage - USB']
+    },
+    {
+      Name: 'BusinessUnit',
+      Values: ['Finance', 'HR']
+    },
+    {
+      Name: 'DeploymentGroups',
+      Values: [
+        'Group 1 (Test devices)',
+        'Group 2 (IT Pilot devices)',
+        'Group 3 (Pilot devices)',
+        'Group 4 (non critical devices)',
+        'Group 5 (critical devices)'
+      ]
+    },
+    {
+      Name: 'Department',
+      Values: ['Facilities', 'Finance', 'HR', 'IT']
+    }
+  ]
+}
+
+export const meta = {
   meta: [
     {
       DisplayName: 'Device AD Site Name',
@@ -24,7 +95,7 @@ export const metaFields = {
     'DeviceTag.Department': {
       label: 'Device Tag Department',
       type: 'multiselect',
-      valueSources: [''],
+      valueSources: ['value'],
       fieldSettings: {
         listValues: []
       }
@@ -32,7 +103,7 @@ export const metaFields = {
     'SoftwareTag.AdobeProducts': {
       label: 'Software Tag AdobeProducts',
       type: 'multiselect',
-      valueSources: [''],
+      valueSources: ['value'],
       fieldSettings: {
         listValues: []
       }
@@ -40,258 +111,7 @@ export const metaFields = {
   }
 }
 
-export const dummyFields = {
-  'ReportDevice.ComputerName': {
-    label: 'ReportDevice.ComputerName',
-    type: 'text'
-  },
-  'ReportDevice.DomainName': {
-    label: 'ReportDevice.DomainName',
-    type: 'text'
-  },
-  'ReportDevice.DeviceName': {
-    label: 'ReportDevice.DeviceName',
-    type: 'text'
-  },
-  'ReportDevice.ComputerNumber': {
-    label: 'ReportDevice.ComputerNumber',
-    type: 'text'
-  },
-  'ReportDevice.DomainNumber': {
-    label: 'ReportDevice.DomainNumber',
-    type: 'text'
-  },
-  'ReportDevice.DeviceNumber': {
-    label: 'ReportDevice.DeviceNumber',
-    type: 'text'
-  },
-  'ReportDevice.ComputerId': {
-    label: 'ReportDevice.ComputerId',
-    type: 'text'
-  },
-  'ReportDevice.DomainId': {
-    label: 'ReportDevice.DomainId',
-    type: 'text'
-  },
-  'ReportDevice.DeviceId': {
-    label: 'ReportDevice.DeviceId',
-    type: 'text'
-  }
-}
-
-export const dummyQueries = [
-  {
-    Operator: 'and',
-    Operands: []
-  },
-  {
-    Operator: 'and',
-    Operands: [
-      {
-        Operator: 'like',
-        Attribute: 'ReportDevice.ComputerName',
-        Value: '%1E%'
-      },
-      {
-        Operator: '==',
-        Attribute: 'ReportDevice.DomainName',
-        Value: '1E.local'
-      }
-    ]
-  },
-  {
-    Operator: 'and',
-    Operands: [
-      {
-        Operator: '==',
-        Attribute: 'ReportDevice.ComputerId',
-        Value: '123'
-      },
-      {
-        Operator: 'like',
-        Attribute: 'ReportDevice.ComputerName',
-        Value: '%comp%'
-      },
-      {
-        Operator: 'and',
-        Operands: [
-          {
-            Operator: '==',
-            Attribute: 'ReportDevice.DomainName',
-            Value: 'dom'
-          },
-          {
-            Operator: '==',
-            Attribute: 'ReportDevice.DeviceName',
-            Value: 'dev'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    Operator: 'and',
-    Operands: [
-      {
-        Operator: '==',
-        Attribute: 'ReportDevice.ComputerId',
-        Value: 'comp-id-123'
-      },
-      {
-        Operator: 'like',
-        Attribute: 'ReportDevice.ComputerName',
-        Value: '%comp-name%'
-      },
-      {
-        Operator: 'and',
-        Operands: [
-          {
-            Operator: '==',
-            Attribute: 'ReportDevice.DomainName',
-            Value: 'dom-name'
-          },
-          {
-            Operator: 'and',
-            Operands: [
-              {
-                Operator: '==',
-                Attribute: 'ReportDevice.DeviceId',
-                Value: 'dev-id'
-              },
-              {
-                Operator: '==',
-                Attribute: 'ReportDevice.DeviceName',
-                Value: 'dev-name'
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    Operator: 'and',
-    Operands: [
-      {
-        Operator: '==',
-        Attribute: 'ReportDevice.ComputerId',
-        Value: 'comp-id-123'
-      },
-      {
-        Operator: 'and',
-        Operands: [
-          {
-            Operator: '==',
-            Attribute: 'ReportDevice.DomainName',
-            Value: 'dom-name'
-          },
-          {
-            Operator: 'like',
-            Attribute: 'ReportDevice.ComputerName',
-            Value: '%comp-name%'
-          },
-          {
-            Operator: 'and',
-            Operands: [
-              {
-                Operator: '==',
-                Attribute: 'ReportDevice.DeviceId',
-                Value: 'dev-id'
-              },
-              {
-                Operator: '==',
-                Attribute: 'ReportDevice.DeviceName',
-                Value: 'dev-name'
-              },
-              {
-                Operator: 'and',
-                Operands: [
-                  {
-                    Operator: '==',
-                    Attribute: 'ReportDevice.DomainId',
-                    Value: 'dom-id'
-                  },
-                  {
-                    Operator: '==',
-                    Attribute: 'ReportDevice.DomainNumber',
-                    Value: 'dom-num'
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    Operator: 'and',
-    Operands: [
-      {
-        Operator: '==',
-        Attribute: 'ReportDevice.ComputerId',
-        Value: 'comp-id-123'
-      },
-      {
-        Operator: 'and',
-        Operands: [
-          {
-            Operator: '==',
-            Attribute: 'ReportDevice.DomainName',
-            Value: 'dom-name'
-          },
-          {
-            Operator: 'like',
-            Attribute: 'ReportDevice.ComputerName',
-            Value: '%comp-name%'
-          },
-          {
-            Operator: 'and',
-            Operands: [
-              {
-                Operator: '==',
-                Attribute: 'ReportDevice.DeviceId',
-                Value: 'dev-id'
-              },
-              {
-                Operator: '==',
-                Attribute: 'ReportDevice.DeviceName',
-                Value: 'dev-name'
-              },
-              {
-                Operator: 'and',
-                Operands: [
-                  {
-                    Operator: '==',
-                    Attribute: 'ReportDevice.DomainId',
-                    Value: 'dom-id'
-                  },
-                  {
-                    Operator: '==',
-                    Attribute: 'ReportDevice.DomainNumber',
-                    Value: 'dom-num'
-                  },
-                  {
-                    Operator: 'and',
-                    Operands: [
-                      {
-                        Operator: '==',
-                        Attribute: 'ReportDevice.DeviceNumber',
-                        Value: 'dev-num-999'
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-]
-
-const getData = ({ id = '123' } = {}) => ({
+export const getQueries = ({ id = '123' } = {}) => ({
   '01': {
     nodeLeaf: {
       Operator: 'and',
@@ -1091,5 +911,3 @@ const getData = ({ id = '123' } = {}) => ({
     }
   }
 })
-
-export default getData

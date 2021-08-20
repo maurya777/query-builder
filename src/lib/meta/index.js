@@ -13,7 +13,9 @@ export const convertMetaToFields = ({ meta, values }) => {
         type: 'number'
       }
     } else {
-      const { Values } = values.find(val => val.Attribute === Attribute) || []
+      const { Values } = values.find(val => val.Name === Attribute) || {
+        Values: []
+      }
       fields[Attribute] = {
         label: DisplayName,
         type: 'multiselect',
@@ -24,6 +26,7 @@ export const convertMetaToFields = ({ meta, values }) => {
       }
     }
   })
+
   return fields
 }
 
