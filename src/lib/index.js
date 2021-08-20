@@ -1,5 +1,4 @@
 import { Utils as QbUtils } from 'react-awesome-query-builder'
-import { flattenDeep } from 'lodash'
 import { processRuleFields, processLeafFields } from './process-fields'
 
 export const convertTreeToNodeLeaf = ({ treeQuery = {} }) => {
