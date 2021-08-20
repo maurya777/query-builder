@@ -7,13 +7,17 @@ import 'react-awesome-query-builder/lib/css/compact_styles.css' //optional, for 
 
 import getConfig from './config'
 
+import { convertPayloadToValues } from '../../../lib/values'
+
 import {
   convertNodeLeafToTree,
   convertTreeToNodeLeaf
 } from '../../../lib/query'
 
 const QueryBuilder = ({ meta = [], values = [], query = {}, onChange }) => {
-  const config = getConfig({ query, meta, values })
+  const _values = convertPayloadToValues({ meta, payload: values })
+
+  const config = getConfig({ query, meta, values: _values })
 
   const _query = convertNodeLeafToTree({
     id: QbUtils.uuid(),

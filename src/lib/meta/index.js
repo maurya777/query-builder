@@ -13,7 +13,7 @@ export const convertMetaToFields = ({ meta, values }) => {
         type: 'number'
       }
     } else {
-      const { Values } = values.find(val => val.Name === Attribute) || {
+      const { Values } = values.find(val => val.Attribute === Attribute) || {
         Values: []
       }
       fields[Attribute] = {

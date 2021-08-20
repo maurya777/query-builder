@@ -1,12 +1,11 @@
-// import { convertPayloadToValues } from './'
+import { convertPayloadToValues } from './'
 
-// import { values } from '../../data'
+import { meta, values } from '../../data'
 
 describe('Convert "Values" payload into "values" for React Awesome Query Builder', () => {
   test('Convert payload to values', () => {
-    expect(1).toEqual(1)
-    // expect(convertPayloadToValues({ meta: values.payload })).toEqual(
-    //   values.values
-    // )
+    expect(
+      convertPayloadToValues({ meta: meta.meta, payload: values.payload })
+    ).toEqual(values.values)
   })
 })

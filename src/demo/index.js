@@ -20,16 +20,19 @@ const App = () => {
     SPOOFAPI().then(() => {
       setMeta([
         {
+          Id: 1,
           DisplayName: 'Device AD Site Name',
           Type: 'String',
           Attribute: 'ReportDevice.ADSiteName'
         },
         {
+          Id: 23,
           DisplayName: 'Device Tag Department',
           Type: 'DeviceTag',
           Attribute: 'DeviceTag.Department'
         },
         {
+          Id: 98,
           DisplayName: 'Software Tag AdobeProducts',
           Type: 'SoftwareTag',
           Attribute: 'SoftwareTag.AdobeProducts'
@@ -38,12 +41,28 @@ const App = () => {
 
       setValues([
         {
-          Name: 'DeviceTag.Department',
-          Values: ['Biztech', 'Engineering', 'Finance', 'HR']
+          Id: 98,
+          Name: 'Adobe Products',
+          TypeId: 1,
+          TypeName: 'SoftwareTag',
+          Values: [
+            { Id: 4, Value: 'Illustrator', PropertyId: 1 },
+            { Id: 1, Value: 'Photoshop', PropertyId: 1 },
+            { Id: 2, Value: 'Acrobat', PropertyId: 1 }
+          ]
         },
         {
-          Name: 'SoftwareTag.AdobeProducts',
-          Values: ['Acrobat', 'Illustrator', 'Photoshop']
+          Id: 23,
+          Name: 'Deployment Groups',
+          TypeId: 1,
+          TypeName: 'DeviceTag',
+          Values: [
+            { Id: 5, Value: 'Group 1 (Test devices)', PropertyId: 2 },
+            { Id: 6, Value: 'Group 2 (IT Pilot devices)', PropertyId: 2 },
+            { Id: 7, Value: 'Group 3 (Pilot devices)', PropertyId: 2 },
+            { Id: 8, Value: 'Group 4 (non critical devices)', PropertyId: 2 },
+            { Id: 9, Value: 'Group 5 (critical devices)', PropertyId: 2 }
+          ]
         }
       ])
 
@@ -61,7 +80,7 @@ const App = () => {
               {
                 Operator: 'In',
                 Attribute: 'DeviceTag.Department',
-                Value: 'Biztech'
+                Value: 'Group 2 (IT Pilot devices),Group 5 (critical devices)'
               },
               {
                 Operator: 'and',

@@ -1,37 +1,19 @@
 export const values = {
   payload: [
     {
-      Id: 1,
-      Name: 'BusinessUnit',
-      TypeId: 123,
-      TypeName: 'SoftwareTag',
-      Values: [
-        { Id: 21, Value: 'Finance', PropertyId: 7 },
-        { Id: 20, Value: 'HR', PropertyId: 7 }
-      ]
-    },
-    {
-      Id: 4,
-      Name: 'CMMC',
-      TypeId: 234,
-      TypeName: 'DeviceTag',
-      Values: [{ Id: 11, Value: 'AC 2 removable storage - USB', PropertyId: 4 }]
-    },
-    {
       Id: 98,
-      Name: 'Department',
+      Name: 'Adobe Products',
       TypeId: 1,
       TypeName: 'SoftwareTag',
       Values: [
-        { Id: 4, Value: 'Facilities', PropertyId: 1 },
-        { Id: 1, Value: 'Finance', PropertyId: 1 },
-        { Id: 2, Value: 'HR', PropertyId: 1 },
-        { Id: 3, Value: 'IT', PropertyId: 1 }
+        { Id: 4, Value: 'Illustrator', PropertyId: 1 },
+        { Id: 1, Value: 'Photoshop', PropertyId: 1 },
+        { Id: 2, Value: 'Acrobat', PropertyId: 1 }
       ]
     },
     {
       Id: 23,
-      Name: 'DeploymentGroups',
+      Name: 'Deployment Groups',
       TypeId: 1,
       TypeName: 'DeviceTag',
       Values: [
@@ -45,15 +27,7 @@ export const values = {
   ],
   values: [
     {
-      Name: 'CMMC',
-      Values: ['AC 2 removable storage - USB']
-    },
-    {
-      Name: 'BusinessUnit',
-      Values: ['Finance', 'HR']
-    },
-    {
-      Name: 'DeploymentGroups',
+      Attribute: 'DeviceTag.DeploymentGroups',
       Values: [
         'Group 1 (Test devices)',
         'Group 2 (IT Pilot devices)',
@@ -63,8 +37,8 @@ export const values = {
       ]
     },
     {
-      Name: 'Department',
-      Values: ['Facilities', 'Finance', 'HR', 'IT']
+      Attribute: 'SoftwareTag.AdobeProducts',
+      Values: ['Illustrator', 'Photoshop', 'Acrobat']
     }
   ]
 }
@@ -72,17 +46,20 @@ export const values = {
 export const meta = {
   meta: [
     {
+      Id: 1,
       DisplayName: 'Device AD Site Name',
       Type: 'String',
       Attribute: 'ReportDevice.ADSiteName'
     },
     {
-      DisplayName: 'Device Tag Department',
+      Id: 23,
+      DisplayName: 'Deployment Groups',
       Type: 'DeviceTag',
-      Attribute: 'DeviceTag.Department'
+      Attribute: 'DeviceTag.DeploymentGroups'
     },
     {
-      DisplayName: 'Software Tag AdobeProducts',
+      Id: 98,
+      DisplayName: 'Adobe Products',
       Type: 'SoftwareTag',
       Attribute: 'SoftwareTag.AdobeProducts'
     }
@@ -92,8 +69,8 @@ export const meta = {
       label: 'Device AD Site Name',
       type: 'text'
     },
-    'DeviceTag.Department': {
-      label: 'Device Tag Department',
+    'DeviceTag.DeploymentGroups': {
+      label: 'Deployment Groups',
       type: 'multiselect',
       valueSources: ['value'],
       fieldSettings: {
@@ -101,7 +78,7 @@ export const meta = {
       }
     },
     'SoftwareTag.AdobeProducts': {
-      label: 'Software Tag AdobeProducts',
+      label: 'Adobe Products',
       type: 'multiselect',
       valueSources: ['value'],
       fieldSettings: {
