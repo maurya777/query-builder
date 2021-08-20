@@ -160,7 +160,7 @@ export const convertMetaToFields = ({ meta, values }) => {
       fields[Attribute] = {
         label: DisplayName,
         type: 'multiselect',
-        valueSources: [],
+        valueSources: ['value'],
         fieldSettings: {
           listValues: Values
         }
@@ -190,11 +190,3 @@ export const convertFieldsToMeta = ({ fields }) =>
       DisplayName: field[1].label
     }
   })
-
-export const getAllOperands = ({ Operands }) => {
-  const recurse = (Operands = []) =>
-    Operands.map(op =>
-      op.Attribute && !op.Operands ? op : recurse(op.Operands)
-    )
-  return flattenDeep(recurse(Operands))
-}
