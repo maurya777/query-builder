@@ -1,16 +1,26 @@
 export const convertMetaToFields = ({ meta, values }) => {
   const fields = {}
 
+  // todo: Type === DateTime (not tested)
   meta.forEach(({ DisplayName, Type, Attribute }) => {
     if (Type === 'String') {
       fields[Attribute] = {
         label: DisplayName,
         type: 'text'
       }
-    } else if (Type === 'Number') {
+    } else if (Type === 'Int' || Type === 'Decimal') {
       fields[Attribute] = {
         label: DisplayName,
-        type: 'number'
+        type: 'number',
+        valueSources: ['value'],
+        preferWidgets: ['number']
+      }
+    } else if (Type === 'Boolean') {
+      fields[Attribute] = {
+        label: DisplayName,
+        type: 'boolean',
+        operators: ['equal'],
+        valueSources: ['value']
       }
     } else {
       const { Values } = values.find(val => val.Attribute === Attribute) || {

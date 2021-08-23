@@ -26,6 +26,19 @@ const App = () => {
           Attribute: 'ReportDevice.ADSiteName'
         },
         {
+          Id: 2,
+          DisplayName: 'Dummy - Number',
+          Type: 'Int',
+          Attribute: 'Dummy.Number'
+        },
+        ,
+        {
+          Id: 3,
+          DisplayName: 'Dummy - Boolean',
+          Type: 'Boolean',
+          Attribute: 'Dummy.Boolean'
+        },
+        {
           Id: 23,
           DisplayName: 'Device Tag Department',
           Type: 'DeviceTag',
@@ -71,8 +84,14 @@ const App = () => {
         Operands: [
           {
             Operator: '==',
-            Attribute: 'ReportDevice.ADSiteName',
-            Value: '1E.local'
+            Attribute: 'Dummy.Number',
+            Value: 777
+          },
+          ,
+          {
+            Operator: '==',
+            Attribute: 'Dummy.Boolean',
+            Value: true
           },
           {
             Operator: 'and',

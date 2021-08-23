@@ -50,8 +50,14 @@ const _processLeafValueSrc = ({ Operator }) => {
   return Operator === 'In' ? ['value'] : ['value']
 }
 
-const _processLeafValueType = ({ Operator }) => {
-  return Operator === 'In' ? ['multiselect'] : ['text']
+const _processLeafValueType = ({ Operator, Value }) => {
+  return typeof Value === 'boolean'
+    ? ['boolean']
+    : typeof Value === 'number'
+    ? ['number']
+    : Operator === 'In'
+    ? ['multiselect']
+    : ['text']
 }
 
 export const processLeafFields = ({ Operator, Attribute, Value }) => ({
@@ -59,5 +65,5 @@ export const processLeafFields = ({ Operator, Attribute, Value }) => ({
   operator: _processLeafOperator({ Operator }),
   value: _processLeafValue({ Value, Operator }),
   valueSrc: _processLeafValueSrc({ Operator }),
-  valueType: _processLeafValueType({ Operator })
+  valueType: _processLeafValueType({ Operator, Value })
 })
