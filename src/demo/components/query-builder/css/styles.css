@@ -1,0 +1,611 @@
+._1eqb .qb-drag-handler,
+.qb-draggable,
+.query-builder {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+._1eqb .rule--header:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+._1eqb .group--header,
+._1eqb .group--footer {
+  display: flex;
+  align-items: center;
+}
+
+._1eqb .query-builder {
+  overflow: hidden;
+}
+._1eqb .query-builder *,
+.query-builder *::before,
+.query-builder *::after {
+  box-sizing: border-box;
+}
+
+/******************************************************************************/
+/** COMMON ********************************************************************/
+/******************************************************************************/
+._1eqb body.qb-dragging .ant-tooltip {
+  display: none;
+}
+
+._1eqb .query-builder {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.25;
+  margin: 1rem;
+}
+
+._1eqb .query-builder.qb-dragging {
+  cursor: -webkit-grabbing !important;
+  cursor: grabbing !important;
+}
+._1eqb .query-builder.qb-dragging button {
+  pointer-events: none;
+}
+
+._1eqb .group {
+  background: rgba(250, 240, 210, 0.5);
+  border: 1px solid #dcc896;
+}
+
+._1eqb .rule {
+  background-color: white;
+  border: 1px solid transparent;
+  padding: 10px;
+}
+
+._1eqb .rule-with-error .rule {
+  border: 1px solid #e0a1a1;
+}
+
+._1eqb .rule--body--wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+._1eqb .rule--error {
+  color: red;
+  margin-bottom: -5px;
+  margin-top: 5px;
+}
+
+._1eqb .group-or-rule {
+  border-radius: 5px;
+  position: relative;
+}
+
+._1eqb .rule_group {
+  background: rgba(255, 252, 242, 0.5);
+  border: 1px solid #f9f1dd;
+}
+
+._1eqb .qb-draggable {
+  pointer-events: none;
+  position: absolute;
+  opacity: 0.7;
+  z-index: 1000;
+}
+
+._1eqb .qb-placeholder {
+  border: 1px dashed gray;
+}
+
+/* slider */
+._1eqb .ant-tooltip-inner {
+  min-height: 18px;
+}
+
+._1eqb .ant-slider {
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+._1eqb .ant-slider-with-marks {
+  margin-bottom: 10px;
+  margin-top: 4px;
+}
+
+._1eqb .ant-slider-track {
+  visibility: visible !important;
+}
+
+/* tree */
+._1eqb .ant-select-tree-dropdown > div[role='listbox'] {
+  outline: none;
+}
+
+._1eqb ul.ant-select-selection__rendered {
+  margin-right: 11px;
+}
+
+/* for antd v4 default is 32 - too big */
+._1eqb .ant-select-item {
+  min-height: 22px;
+}
+
+/******************************************************************************/
+/** GROUP *********************************************************************/
+/******************************************************************************/
+._1eqb .group--children {
+  padding-left: 24px;
+}
+._1eqb .group--children > .group-or-rule-container > .group-or-rule:before {
+  top: -4px;
+  border-width: 0 0 2px 2px;
+}
+._1eqb .group--children > .group-or-rule-container > .group-or-rule::after {
+  top: 50%;
+  border-width: 0 0 0 2px;
+}
+._1eqb .group--children > .group-or-rule-container > .group-or-rule::before,
+.group--children > .group-or-rule-container > .group-or-rule::after {
+  content: '';
+  position: absolute;
+  left: -14px;
+  width: 14px;
+  height: calc(50% + 8px);
+  border-color: #ccc;
+  border-style: solid;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+._1eqb
+  .group--children.hide--conjs
+  > .group-or-rule-container:first-child
+  > .group-or-rule::before {
+  display: none;
+}
+._1eqb
+  .group--children.hide--conjs
+  > .group-or-rule-container:first-child
+  > .group-or-rule::after {
+  border-radius: 4px 0 0 0;
+  border-width: 2px 0 0 2px;
+}
+._1eqb
+  .group--children.rule_group--children
+  > .group-or-rule-container:first-child
+  > .group-or-rule::before {
+  display: none;
+}
+._1eqb
+  .group--children.rule_group--children
+  > .group-or-rule-container:first-child
+  > .group-or-rule::after {
+  border-radius: 4px 0 0 0;
+  border-width: 2px 0 0 2px;
+}
+._1eqb
+  .group--children
+  > .group-or-rule-container:first-child
+  > .group-or-rule::before {
+  top: -12px;
+  height: calc(50% + 14px);
+}
+._1eqb
+  .group--children
+  > .group-or-rule-container:last-child
+  > .group-or-rule::before {
+  border-radius: 0 0 0 4px;
+}
+._1eqb
+  .group--children
+  > .group-or-rule-container:last-child
+  > .group-or-rule::after {
+  display: none;
+}
+
+._1eqb
+  .group--children.hide--line
+  > .group-or-rule-container
+  > .group-or-rule::before,
+.group--children.hide--line > .group-or-rule-container > .group-or-rule::after {
+  border-color: rgba(128, 128, 128, 0.1);
+}
+
+._1eqb .qb-draggable::before,
+.qb-draggable::after {
+  display: none;
+}
+
+._1eqb .qb-drag-handler {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+._1eqb .group--drag-handler {
+  margin-right: 8px;
+  position: relative;
+  top: 3px;
+}
+
+._1eqb .group--conjunctions .group--drag-handler {
+  margin-left: 10px;
+}
+
+._1eqb .group--conjunctions.hide--conj {
+  opacity: 0.3;
+}
+
+._1eqb .group--actions {
+  margin-left: 10px;
+  flex: 1;
+  display: flex;
+}
+._1eqb .group--actions--tl,
+.group--actions--bl {
+  justify-content: flex-start;
+}
+._1eqb .group--actions--tl {
+  margin-left: 20px;
+}
+._1eqb .group--actions--tc,
+.group--actions--bc {
+  justify-content: center;
+}
+._1eqb .group--actions--tr,
+.group--actions--br {
+  justify-content: flex-end;
+}
+._1eqb .group--actions .action--DELETE {
+  margin-top: -1px;
+}
+
+/******************************************************************************/
+/** RULE_GROUP *********************************************************************/
+/******************************************************************************/
+._1eqb .rule_group {
+  display: flex;
+  padding-left: 10px;
+}
+._1eqb .rule_group .group--drag-handler {
+  align-self: center;
+}
+._1eqb .rule_group .group--field {
+  align-self: center;
+}
+._1eqb .rule_group .group--actions {
+  align-self: center;
+  flex: 0;
+}
+._1eqb .rule_group .rule_group--children {
+  flex: 1;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 18px;
+}
+._1eqb .rule_group .rule_group--children .group-or-rule-container {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-right: 5px;
+}
+._1eqb .rule_group .rule_group--children.one--child {
+  padding-left: 10px;
+}
+._1eqb
+  .rule_group
+  .rule_group--children
+  > .group-or-rule-container
+  > .group-or-rule::before,
+.rule_group
+  .rule_group--children
+  > .group-or-rule-container
+  > .group-or-rule::after {
+  left: -10px;
+  width: 10px;
+  height: calc(50% + 8px);
+}
+
+/******************************************************************************/
+/** RULE_GROUP_EXT *********************************************************************/
+/******************************************************************************/
+._1eqb .group--header.hide--drag.with--conjs > .group--field--count--rule {
+  margin-left: 20px;
+}
+
+/******************************************************************************/
+/** RULE **********************************************************************/
+/******************************************************************************/
+._1eqb .rule {
+  flex: 1;
+  display: flex;
+}
+
+._1eqb .rule--header {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+._1eqb .rule--drag-handler {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+._1eqb .rule--field,
+.group--field,
+.rule--operator,
+.rule--value,
+.rule--operator-options,
+.rule--widget,
+.widget--widget,
+.widget--valuesrc,
+.widget--sep,
+.operator--options--sep,
+.rule--before-widget,
+.rule--after-widget {
+  display: inline-block;
+}
+
+._1eqb .mui .widget--sep,
+.mui .operator--options--sep,
+.mui .rule--func--bracket-before,
+.mui .rule--func--bracket-after,
+.mui .rule--func--arg-sep {
+  vertical-align: bottom;
+  align-self: flex-end;
+  margin-bottom: 8px;
+}
+._1eqb .mui .rule--operator-options {
+  vertical-align: bottom;
+}
+._1eqb .mui .widget--valuesrc {
+  vertical-align: bottom;
+}
+
+._1eqb .rule--operator,
+.widget--widget,
+.widget--valuesrc,
+.widget--sep {
+  margin-left: 10px;
+}
+
+._1eqb .widget--valuesrc {
+  margin-right: -8px;
+}
+
+._1eqb .widget--valuesrc span i {
+  transform: rotate(90deg);
+}
+
+._1eqb .operator--options--sep {
+  margin-right: 10px;
+}
+
+._1eqb div.tooltip-inner {
+  max-width: 500px;
+}
+
+._1eqb .rule--field label,
+.group--field label,
+.rule--operator label,
+.widget--widget label {
+  display: block;
+  font-weight: bold;
+}
+
+/******************************************************************************/
+/** CONJUNCTION ***************************************************************/
+/******************************************************************************/
+._1eqb .conjunction {
+  display: inline-block;
+}
+._1eqb .conjunction label {
+  display: inline-block;
+  border: 1px solid;
+  cursor: pointer;
+  color: white;
+  text-transform: uppercase;
+  padding: 0.2rem 0.4rem;
+}
+._1eqb .conjunction input {
+  display: none;
+}
+._1eqb .conjunction[data-state='active'] label {
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+._1eqb .conjunction[data-state='inactive'] label {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+._1eqb .conjunction[data-state='inactive'] label:hover {
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+._1eqb .conjunction:first-child label {
+  border-radius: 3px 0 0 3px;
+}
+._1eqb .conjunction:last-child label {
+  border-radius: 0 3px 3px 0;
+}
+._1eqb .conjunction:first-child:last-child {
+  border-radius: 3px;
+}
+
+/******************************************************************************/
+/** FUNC **********************************************************************/
+/******************************************************************************/
+._1eqb .rule--func--wrapper,
+.rule--func,
+.rule--func--args,
+.rule--func--arg,
+.rule--func--arg-value,
+.rule--func--bracket-before,
+.rule--func--bracket-after,
+.rule--func--arg-sep,
+.rule--func--arg-label,
+.rule--func--arg-label-sep {
+  display: inline-block;
+}
+
+._1eqb .rule--func--bracket-before,
+.rule--func--bracket-after {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+._1eqb .rule--func--bracket-before {
+  margin-left: 5px;
+}
+
+._1eqb .rule--func--arg-value > .rule--widget {
+  margin-left: -10px;
+}
+
+._1eqb .rule--func--arg-sep {
+  margin-left: 3px;
+  margin-right: 6px;
+}
+
+._1eqb .rule--func--arg-label-sep {
+  margin-left: 1px;
+  margin-right: 6px;
+}
+
+/******************************************************************************/
+/** Minimalism ****************************************************************/
+/******************************************************************************/
+._1eqb .qb-lite .group--drag-handler,
+.qb-lite .group--actions {
+  transition: opacity 0.2s;
+}
+._1eqb .qb-lite .group--header:hover .group--header .group--drag-handler,
+.qb-lite .group--header:hover .group--header .group--actions,
+._1eqb .qb-lite .group--header:not(:hover) .group--drag-handler,
+._1eqb .qb-lite .group--header:not(:hover) .group--actions,
+._1eqb .qb-lite .rule_group:not(:hover) .group--drag-handler,
+._1eqb .qb-lite .rule_group:not(:hover) .group--actions {
+  opacity: 0;
+}
+._1eqb .qb-lite .group--conjunctions .ant-btn:not(.ant-btn-primary),
+.qb-lite .rule_group_ext--drag-handler {
+  transition: padding 0.2s;
+}
+._1eqb
+  .qb-lite
+  .group--header:hover
+  .group--header
+  .group--conjunctions
+  .ant-btn:not(.ant-btn-primary),
+.qb-lite .group--header:hover .group--header .rule_group_ext--drag-handler,
+._1eqb
+  .qb-lite
+  .group--header:not(:hover)
+  .group--conjunctions
+  .ant-btn:not(.ant-btn-primary),
+._1eqb .qb-lite .group--header:not(:hover) .rule_group_ext--drag-handler,
+._1eqb
+  .qb-lite
+  .rule_group:not(:hover)
+  .group--conjunctions
+  .ant-btn:not(.ant-btn-primary),
+._1eqb .qb-lite .rule_group:not(:hover) .rule_group_ext--drag-handler {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+._1eqb .qb-lite .widget--valuesrc,
+.qb-lite .rule--drag-handler,
+.qb-lite .rule--header {
+  transition: opacity 0.2s;
+}
+._1eqb .qb-lite .rule:hover .rule .widget--valuesrc,
+.qb-lite .rule:hover .rule .rule--drag-handler,
+.qb-lite .rule:hover .rule .rule--header,
+._1eqb .qb-lite .rule:not(:hover) .widget--valuesrc,
+._1eqb .qb-lite .rule:not(:hover) .rule--drag-handler,
+._1eqb .qb-lite .rule:not(:hover) .rule--header {
+  opacity: 0;
+}
+._1eqb .qb-lite.qb-dragging .widget--valuesrc,
+.qb-lite.qb-dragging .rule--drag-handler,
+.qb-lite.qb-dragging .rule--header,
+.qb-lite.qb-dragging .group--drag-handler,
+.qb-lite.qb-dragging .group--actions {
+  opacity: 0 !important;
+}
+._1eqb .qb-lite.qb-dragging .group--conjunctions .ant-btn:not(.ant-btn-primary),
+.qb-lite.qb-dragging .rule_group_ext--drag-handler {
+  width: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+}
+
+/******************************************************************************/
+/** Vertical padding ****************************************************************/
+/******************************************************************************/
+._1eqb .group--header,
+._1eqb .group--footer {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+._1eqb .group-or-rule-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-right: 10px;
+}
+._1eqb .group-or-rule-container:first-child {
+  margin-top: 0px !important;
+}
+._1eqb .group-or-rule-container:last-child {
+  margin-bottom: 0px !important;
+}
+
+._1eqb .group--children {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/******************************************************************************/
+/** Shrink textarea ***********************************************************/
+/******************************************************************************/
+._1eqb .rule--body.can--shrink--value {
+  display: flex;
+  align-items: center;
+}
+._1eqb .rule--body.can--shrink--value .rule--value {
+  flex: 1;
+}
+._1eqb .rule--body.can--shrink--value .rule--value > .rule--widget {
+  display: flex;
+}
+._1eqb
+  .rule--body.can--shrink--value
+  .rule--value
+  > .rule--widget
+  .widget--widget {
+  flex: 1;
+}
+._1eqb
+  .rule--body.can--shrink--value
+  .rule--value
+  > .rule--widget
+  > .widget--valuesrc {
+  display: flex;
+  align-items: center;
+}
+
+._1eqb .rule--value > .rule--widget > .widget--valuesrc .anticon {
+  height: 100%;
+}
+._1eqb .rule--value > .rule--widget > .widget--valuesrc .anticon svg {
+  height: 100%;
+}

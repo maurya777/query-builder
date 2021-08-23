@@ -1,0 +1,103 @@
+._1eqb .group--conjunctions,
+.group--children {
+  margin: 0px !important;
+}
+
+._1eqb .rule {
+  padding: 5px;
+}
+
+._1eqb .group {
+  padding-left: 0px;
+}
+
+._1eqb .rule_group {
+  padding-left: 5px;
+}
+
+._1eqb .group--children {
+  padding-left: 10px !important;
+}
+._1eqb .group--children > .group-or-rule-container > .group-or-rule::before,
+.group--children > .group-or-rule-container > .group-or-rule::after {
+  left: -7px;
+  width: 7px;
+}
+._1eqb
+  .group--children
+  > .group-or-rule-container:first-child
+  > .group-or-rule::before {
+  top: -7px;
+}
+
+._1eqb .group--conjunctions {
+  margin-left: 4px !important;
+}
+
+._1eqb .group-or-rule-container {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-right: 5px;
+}
+
+._1eqb .group--children {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+._1eqb .group--header,
+._1eqb .group--footer {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+._1eqb .rule--operator,
+.widget--widget,
+.widget--valuesrc,
+.widget--sep {
+  margin-left: 5px;
+}
+
+._1eqb .rule_group .group--actions {
+  margin-left: 5px;
+}
+._1eqb .rule_group .rule_group--children {
+  padding-left: 10px !important;
+}
+._1eqb .rule_group .rule_group--children.one--child {
+  padding-left: 5px !important;
+}
+._1eqb
+  .rule_group
+  .rule_group--children
+  > .group-or-rule-container
+  > .group-or-rule::before,
+.rule_group
+  .rule_group--children
+  > .group-or-rule-container
+  > .group-or-rule::after {
+  left: -7px;
+  width: 7px;
+}
+
+._1eqb .widget--valuesrc {
+  margin-right: -3px;
+}
+
+._1eqb .operator--options--sep {
+  margin-right: 5px;
+}
+
+._1eqb .group--header {
+  padding-left: 0;
+  padding-right: 5px;
+  margin: 0;
+}
+
+._1eqb .group--drag-handler {
+  margin-left: 5px;
+}
+
+._1eqb .rule--func--arg-value > .rule--widget {
+  margin-left: -5px;
+}
