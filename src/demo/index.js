@@ -31,7 +31,6 @@ const App = () => {
           Type: 'Int',
           Attribute: 'Dummy.Number'
         },
-        ,
         {
           Id: 3,
           DisplayName: 'Dummy - Boolean',
@@ -87,7 +86,6 @@ const App = () => {
             Attribute: 'Dummy.Number',
             Value: 777
           },
-          ,
           {
             Operator: '==',
             Attribute: 'Dummy.Boolean',
