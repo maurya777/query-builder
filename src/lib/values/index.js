@@ -4,8 +4,9 @@
 export const convertPayloadToValues = ({ meta, payload = [] }) => {
   return meta
     .filter(({ Type }) => Type === 'SoftwareTag' || Type === 'DeviceTag')
-    .map(({ Attribute, Id }) => {
-      const obj = payload.find(val => val.Id === Id) || {}
-      return { Attribute, Values: obj.Values?.map(({ Value }) => Value) }
-    })
+    .map(({ Type, Attribute, Id }) => {
+      const obj =
+        payload.find((val) => val.Id === Id && val.TypeName === Type) || {};
+      return { Attribute, Values: obj.Values?.map(({ Value }) => Value) };
+    });
 }
